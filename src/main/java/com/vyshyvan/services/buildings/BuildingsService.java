@@ -8,6 +8,6 @@ public interface BuildingsService {
     Buildings insertBuildings(Buildings buildings);
     Buildings getBuildings(int id);
     Buildings updateBuildings(Buildings buildings);
-    Buildings deleteBuildings(int id);
+    void deleteBuildings(int id);
     List<Buildings> getAll();
 }

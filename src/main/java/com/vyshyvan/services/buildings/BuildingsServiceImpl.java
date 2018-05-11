@@ -1,7 +1,6 @@
-/*
 package com.vyshyvan.services.buildings;
 
-import com.vyshyvan.dao.buildings.BuildingsDAOImpl;
+import com.vyshyvan.dao.buildings.BuildingsDAO;
 import com.vyshyvan.model.Buildings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,31 +10,29 @@ import java.util.List;
 @Service
 public class BuildingsServiceImpl implements BuildingsService {
     @Autowired
-    BuildingsDAOImpl buildingsDAO;
+    BuildingsDAO buildingsDAO;
 
     @Override
     public Buildings insertBuildings(Buildings buildings) {
-        return buildingsDAO.insertBuildings(buildings);
+        return buildingsDAO.save(buildings);
     }
 
     @Override
     public Buildings getBuildings(int id) {
-        return buildingsDAO.getBuildings(id);
+        return buildingsDAO.findById(id).get();
     }
 
     @Override
     public Buildings updateBuildings(Buildings buildings) {
-        return buildingsDAO.updateBuildings(buildings);
+        return buildingsDAO.save(buildings);
     }
 
     @Override
-    public Buildings deleteBuildings(int id) {
-        return buildingsDAO.deleteBuildings(id);
+    public void deleteBuildings(int id) { buildingsDAO.deleteById(id);
     }
 
     @Override
     public List<Buildings> getAll() {
-        return buildingsDAO.getAll();
+        return (List<Buildings>) buildingsDAO.findAll();
     }
 }
-*/
