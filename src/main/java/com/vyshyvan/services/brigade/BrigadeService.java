@@ -8,6 +8,6 @@ public interface BrigadeService {
     Brigade insertBrigade(Brigade brigade);
     Brigade getBrigade(int id);
     Brigade updateBrigade(Brigade brigade);
-    Brigade deleteBrigade(int id);
+    void deleteBrigade(int id);
     List<Brigade> getAll();
 }
