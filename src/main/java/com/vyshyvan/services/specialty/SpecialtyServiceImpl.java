@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.specialty;
 
 import com.vyshyvan.dao.specialty.SpecialtyDAOImpl;
@@ -37,3 +38,4 @@ public class SpecialtyServiceImpl implements SpecialtyService{
         return specialtyDAO.getAll();
     }
 }
+*/

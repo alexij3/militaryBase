@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.MilitaryBase;
@@ -19,3 +20,4 @@ public class MilitaryBaseController {
         return militaryBaseService.getAll();
     }
 }
+*/

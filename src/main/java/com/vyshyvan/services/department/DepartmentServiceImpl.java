@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.department;
 
 import com.vyshyvan.dao.department.DepartmentDAOImpl;
@@ -37,3 +38,4 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentDAO.getAll();
     }
 }
+*/

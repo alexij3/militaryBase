@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.ordinary;
 
 import com.vyshyvan.dao.ordinary.OrdinaryDAOImpl;
@@ -37,3 +38,4 @@ public class OrdinaryServiceImpl implements OrdinaryService{
         return ordinaryDAO.getAll();
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.soldier;
 
 import com.vyshyvan.dao.soldier.SoldierDAOImpl;
@@ -37,3 +38,4 @@ public class SoldierServiceImpl implements SoldierService {
         return soldierDAO.getAll();
     }
 }
+*/

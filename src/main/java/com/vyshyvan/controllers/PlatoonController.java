@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.Platoon;
@@ -20,3 +21,4 @@ public class PlatoonController {
     }
 
 }
+*/

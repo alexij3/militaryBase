@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.squadron;
 
 import com.vyshyvan.dao.squadron.SquadronDAOImpl;
@@ -37,3 +38,4 @@ public class SquadronServiceImpl implements SquadronService {
         return squadronDAO.getAll();
     }
 }
+*/

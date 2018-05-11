@@ -1,6 +1,6 @@
 package com.vyshyvan.services.army;
 
-import com.vyshyvan.dao.army.ArmyDAOImpl;
+import com.vyshyvan.dao.army.ArmyDAO;
 import com.vyshyvan.model.Army;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,30 +10,30 @@ import java.util.List;
 @Service
 public class ArmyServiceImpl implements ArmyService {
     @Autowired
-    ArmyDAOImpl armyDAO;
+    ArmyDAO armyDAO;
 
     @Override
     public Army insertArmy(Army army) {
-        return armyDAO.insertArmy(army);
+        return armyDAO.save(army);
     }
 
     @Override
     public Army getArmy(int id) {
-        return armyDAO.getArmy(id);
+        return armyDAO.findById(id).get();
     }
 
     @Override
     public Army updateArmy(Army army) {
-        return armyDAO.updateArmy(army);
+        return armyDAO.save(army);
     }
 
     @Override
-    public Army deleteArmy(int id) {
-        return armyDAO.deleteArmy(id);
+    public void deleteArmy(int id) {
+        armyDAO.deleteById(id);
     }
 
     @Override
     public List<Army> getAll() {
-        return armyDAO.getAll();
+        return (List<Army>)armyDAO.findAll();
     }
 }

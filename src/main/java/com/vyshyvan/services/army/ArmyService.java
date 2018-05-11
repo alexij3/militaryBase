@@ -8,6 +8,6 @@ public interface ArmyService {
     Army insertArmy(Army army);
     Army getArmy(int id);
     Army updateArmy(Army army);
-    Army deleteArmy(int id);
+    void deleteArmy(int id);
     List<Army> getAll();
 }

@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.weaponry;
 
 import com.vyshyvan.dao.weaponry.WeaponryDAOImpl;
@@ -37,3 +38,4 @@ public class WeaponryServiceImpl implements WeaponryService{
         return weaponryDAO.getAll();
     }
 }
+*/

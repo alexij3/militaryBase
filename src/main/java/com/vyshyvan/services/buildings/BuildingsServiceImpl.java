@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.buildings;
 
 import com.vyshyvan.dao.buildings.BuildingsDAOImpl;
@@ -37,3 +38,4 @@ public class BuildingsServiceImpl implements BuildingsService {
         return buildingsDAO.getAll();
     }
 }
+*/

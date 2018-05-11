@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/army")
 public class ArmyController {
     @Autowired
     ArmyServiceImpl armyService;
 
-    @RequestMapping("/army")
+    @RequestMapping("/showall")
     public List<Army> showArmies(){
         return armyService.getAll();
     }

@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.Specialty;
@@ -21,3 +22,4 @@ public class SpecialtyController {
 
 
 }
+*/

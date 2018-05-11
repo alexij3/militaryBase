@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.transport;
 
 import com.vyshyvan.dao.transport.TransportDAOImpl;
@@ -37,3 +38,4 @@ public class TransportServiceImpl implements TransportService {
         return transportDAO.getAll();
     }
 }
+*/

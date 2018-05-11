@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.militarybase;
 
 import com.vyshyvan.dao.militarybase.MilitaryBaseDAOImpl;
@@ -37,3 +38,4 @@ public class MilitaryBaseServiceImpl implements MilitaryBaseService {
         return militaryBaseDAO.getAll();
     }
 }
+*/

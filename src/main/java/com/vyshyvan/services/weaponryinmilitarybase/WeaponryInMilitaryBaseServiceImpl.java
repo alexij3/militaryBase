@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.weaponryinmilitarybase;
 
 import com.vyshyvan.dao.weaponryinmilitarybase.WeaponryInMilitaryBaseDAO;
@@ -37,3 +38,4 @@ public class WeaponryInMilitaryBaseServiceImpl implements WeaponryInMilitaryBase
         return weaponryInMilitaryBaseDAO.getAll();
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.corps;
 
 import com.vyshyvan.dao.corps.CorpsDAOImpl;
@@ -37,3 +38,4 @@ public class CorpsServiceImpl implements CorpsService{
         return corpsDAO.getAll();
     }
 }
+*/

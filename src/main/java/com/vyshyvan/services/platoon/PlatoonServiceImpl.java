@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.platoon;
 
 import com.vyshyvan.dao.platoon.PlatoonDAOImpl;
@@ -37,3 +38,4 @@ public class PlatoonServiceImpl implements PlatoonService {
         return platoonDAO.getAll();
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.controllers;
 
 
@@ -20,3 +21,4 @@ public class CorpsController {
         return corpsService.getAll();
     }
 }
+*/

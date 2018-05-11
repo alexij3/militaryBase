@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.transportinmilitarybase;
 
 import com.vyshyvan.dao.transportinmilitarybase.TransportInMilitaryBaseDAO;
@@ -38,3 +39,4 @@ public class TransportInMilitaryBaseServiceImpl implements TransportInMilitaryBa
         return transportInMilitaryBaseDAO.getAll();
     }
 }
+*/

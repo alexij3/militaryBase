@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.division;
 
 import com.vyshyvan.dao.division.DivisionDAOImpl;
@@ -37,3 +38,4 @@ public class DivisionServiceImpl implements DivisionService {
         return divisionDAO.getAll();
     }
 }
+*/

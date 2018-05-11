@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.brigade;
 
 import com.vyshyvan.dao.brigade.BrigadeDAOImpl;
@@ -37,3 +38,4 @@ public class BrigadeServiceImpl implements BrigadeService {
         return brigadeDAO.getAll();
     }
 }
+*/
