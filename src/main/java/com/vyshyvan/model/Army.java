@@ -1,5 +1,6 @@
 package com.vyshyvan.model;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 public class Army {
     private Integer id;
