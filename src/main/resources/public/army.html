@@ -2,52 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Армія</title>
+    <title>Армії</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
 
 </head>
 <body ng-app = "demo">
-<div class="container" style="margin-top: 30px" ng-controller = "AppCtrl as ctrl" >
-    <div class="row">
-        <div class="col-md12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Армія</div>
-                <div class="panel-body">
+Армії
+<div class="container" style="margin-top: 30px" ng-controller = "ArmyCtrl as armyCtrl">
+    <div class="datagrid">
+        <table>
+            <thead>
+            <tr>
+                <th>&#128273ІД</th>
+                <th>Номер</th>
+                <th>Назва</th>
+                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+            </tr>
+            </thead>
 
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
+            <tbody>
 
-                            <th>&#128273ID</th>
-                            <th>Кодовий номер</th>
-                            <th>Назва армії</th>
+            <tr ng-repeat = "item in armies">
+                <td>{{item.id}}</td>
+                <td>{{item.codeNumber}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                    <button id="update" ng-click="armyCtrl.startUpdateArmy(item.id, item.name, item.codeNumber)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="armyCtrl.deleteArmy(item.id)" class="btn-danger">Видалити</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-                        </tr>
-                        </thead>
-
-                        <tbody>
-
-                        <tr ng-repeat = "item in armies">
-                            <td>{{item.id}}</td>
-                            <td>{{item.codeNumber}}</td>
-                            <td>{{item.name}}</td>
-                        </tr>
-
-                        </tbody>
-
-
-                    </table>
+    <!-- Додавання армії -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Кодовий номер:</label>
+                    <input type="text" id="armyCode" name="armyCode" /> <br>
+                    <label>Назва:</label>
+                    <input type="text" id="armyName" name="armyName" />
 
                 </div>
+                <div class="modal-footer">
+                    <button class = "btn btn-default" id="createArmyButton" ng-click="armyCtrl.createArmy()">Створити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
             </div>
+
         </div>
     </div>
 
+    <!-- Редагування армії -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Кодовий номер:</label>
+                    <input type="text" id="updateArmyCode" name="updateArmyCode" /> <br>
+                    <label>Назва:</label>
+                    <input type="text" id="updateArmyName" name="updateArmyName" />
+                    <button id="editArmyButton" ng-click="armyCtrl.updateArmy()">Змінити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>
 
 
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/army.js"></script>
+
+
+
+
 </body>
 </html>
