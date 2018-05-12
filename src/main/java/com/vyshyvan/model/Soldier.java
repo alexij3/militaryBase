@@ -1,26 +1,25 @@
 package com.vyshyvan.model;
 
-public class Soldier {
-    private Integer id;
-    private String name;
-    private int age;
-    private int militaryBaseID;
-    private Specialty specialty;
+import javax.persistence.*;
 
-    public Soldier(Integer id, String name, int age, int militaryBaseID, Specialty specialty) {
-        this.id = id;
+@Entity
+public class Soldier {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
+    private String name;
+
+    @Column
+    private int age;
+
+    public Soldier() {
+    }
+
+    public Soldier(String name, int age) {
         this.name = name;
         this.age = age;
-        this.militaryBaseID = militaryBaseID;
-        this.specialty = specialty;
-    }
-
-    public Specialty getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(Specialty specialty) {
-        this.specialty = specialty;
     }
 
     public Integer getId() {
@@ -45,13 +44,5 @@ public class Soldier {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public int getMilitaryBaseID() {
-        return militaryBaseID;
-    }
-
-    public void setMilitaryBaseID(int militaryBaseID) {
-        this.militaryBaseID = militaryBaseID;
     }
 }

@@ -1,16 +1,52 @@
 package com.vyshyvan.model;
 
-public class Squadron {
-    private Integer id;
-    private String codeNumber;
-    private String name;
-    private MilitaryBase militaryBase;
+import javax.persistence.*;
+import java.util.Set;
 
-    public Squadron(Integer id, String codeNumber, String name, MilitaryBase militaryBase) {
-        this.id = id;
+@Entity
+public class Squadron {
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @Column(name = "code_number")
+    private String codeNumber;
+
+    @Column
+    private String name;
+
+    @OneToMany(mappedBy = "platoon", fetch = FetchType.EAGER)
+    @JoinColumn(name="platoon_id", nullable = false)
+    private Set<Platoon> platoons;
+
+    public Squadron() {
+    }
+
+    public Squadron(String codeNumber, String name) {
         this.codeNumber = codeNumber;
         this.name = name;
-        this.militaryBase = militaryBase;
+    }
+
+    public Squadron(String codeNumber, String name, Set<Platoon> platoons) {
+        this.codeNumber = codeNumber;
+        this.name = name;
+        this.platoons = platoons;
+    }
+
+    public Set<Platoon> getPlatoons() {
+        return platoons;
+    }
+
+    public void setPlatoons(Set<Platoon> platoons) {
+        this.platoons = platoons;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCodeNumber() {
@@ -27,53 +63,5 @@ public class Squadron {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public MilitaryBase getMilitaryBase() {
-        return militaryBase;
-    }
-
-    public void setMilitaryBase(MilitaryBase militaryBase) {
-        this.militaryBase = militaryBase;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Squadron squadron = (Squadron) o;
-
-        if (id != null ? !id.equals(squadron.id) : squadron.id != null) return false;
-        if (codeNumber != null ? !codeNumber.equals(squadron.codeNumber) : squadron.codeNumber != null) return false;
-        if (name != null ? !name.equals(squadron.name) : squadron.name != null) return false;
-        return militaryBase != null ? militaryBase.equals(squadron.militaryBase) : squadron.militaryBase == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (codeNumber != null ? codeNumber.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (militaryBase != null ? militaryBase.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Squadron{" +
-                "id=" + id +
-                ", codeNumber='" + codeNumber + '\'' +
-                ", name='" + name + '\'' +
-                ", militaryBase=" + militaryBase +
-                '}';
     }
 }

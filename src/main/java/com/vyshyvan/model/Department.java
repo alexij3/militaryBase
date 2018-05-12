@@ -1,14 +1,32 @@
 package com.vyshyvan.model;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
 public class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "code_number")
     private String codeNumber;
+
+    @Column
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "platoon_id", nullable = false, insertable = false, updatable = false)
     private Platoon platoon;
+
+    @OneToOne
+    @JoinColumn(name = "captain_id", nullable = false)
     private Soldier captain;
 
-    public Department(Integer id, String codeNumber, String name, Platoon platoon, Soldier captain) {
-        this.id = id;
+    public Department() {
+    }
+
+    public Department(String codeNumber, String name, Platoon platoon, Soldier captain) {
         this.codeNumber = codeNumber;
         this.name = name;
         this.platoon = platoon;
@@ -53,40 +71,5 @@ public class Department {
 
     public void setCaptain(Soldier captain) {
         this.captain = captain;
-    }
-
-    @Override
-    public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", codeNumber='" + codeNumber + '\'' +
-                ", name='" + name + '\'' +
-                ", platoon=" + platoon +
-                ", captain=" + captain +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Department that = (Department) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (codeNumber != null ? !codeNumber.equals(that.codeNumber) : that.codeNumber != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (platoon != null ? !platoon.equals(that.platoon) : that.platoon != null) return false;
-        return captain != null ? captain.equals(that.captain) : that.captain == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (codeNumber != null ? codeNumber.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (platoon != null ? platoon.hashCode() : 0);
-        result = 31 * result + (captain != null ? captain.hashCode() : 0);
-        return result;
     }
 }
