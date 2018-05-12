@@ -15,8 +15,7 @@ public class Squadron {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "platoon", fetch = FetchType.EAGER)
-    @JoinColumn(name="platoon_id", nullable = false)
+    @OneToMany(mappedBy = "squadron", fetch = FetchType.EAGER)
     private Set<Platoon> platoons;
 
     public Squadron() {
