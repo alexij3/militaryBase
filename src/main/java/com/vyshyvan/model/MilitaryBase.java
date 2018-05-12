@@ -1,19 +1,45 @@
 package com.vyshyvan.model;
 
-import java.util.Map;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "military_base")
 public class MilitaryBase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="army_id", nullable = false)
     private Army army;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "division_id")
     private Division division;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "corps_id")
     private Corps corps;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "brigade_id")
     private Brigade brigade;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "dislocation", nullable = false)
     private Buildings dislocation;
+
+    @OneToOne
+    @JoinColumn(name = "captain_id", nullable = false)
     private Soldier captain;
 
-    public MilitaryBase(Integer id, String name, Army army, Division division, Corps corps, Brigade brigade, Buildings dislocation, Soldier captain) {
-        this.id = id;
+    public MilitaryBase() {
+    }
+
+    public MilitaryBase(String name, Army army, Division division, Corps corps, Brigade brigade, Buildings dislocation, Soldier captain) {
         this.name = name;
         this.army = army;
         this.division = division;
