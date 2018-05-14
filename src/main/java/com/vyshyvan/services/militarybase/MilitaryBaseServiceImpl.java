@@ -1,8 +1,7 @@
-/*
 package com.vyshyvan.services.militarybase;
 
-import com.vyshyvan.dao.militarybase.MilitaryBaseDAOImpl;
 import com.vyshyvan.model.MilitaryBase;
+import com.vyshyvan.repositories.militarybase.MilitaryBaseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,31 +10,30 @@ import java.util.List;
 @Service
 public class MilitaryBaseServiceImpl implements MilitaryBaseService {
     @Autowired
-    MilitaryBaseDAOImpl militaryBaseDAO;
+    MilitaryBaseDAO militaryBaseDAO;
 
     @Override
     public MilitaryBase insertMilitaryBase(MilitaryBase militaryBase) {
-        return militaryBaseDAO.insertMilitaryBase(militaryBase);
+        return militaryBaseDAO.save(militaryBase);
     }
 
     @Override
     public MilitaryBase getMilitaryBase(int id) {
-        return militaryBaseDAO.getMilitaryBase(id);
+        return militaryBaseDAO.findById(id).get();
     }
 
     @Override
     public MilitaryBase updateMilitaryBase(MilitaryBase militaryBase) {
-        return militaryBaseDAO.updateMilitaryBase(militaryBase);
+        return militaryBaseDAO.save(militaryBase);
     }
 
     @Override
-    public MilitaryBase deleteMilitaryBase(int id) {
-        return militaryBaseDAO.deleteMilitaryBase(id);
+    public void deleteMilitaryBase(int id) {
+        militaryBaseDAO.deleteById(id);
     }
 
     @Override
     public List<MilitaryBase> getAll() {
-        return militaryBaseDAO.getAll();
+        return (List<MilitaryBase>) militaryBaseDAO.findAll();
     }
 }
-*/

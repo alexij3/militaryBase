@@ -1,10 +1,13 @@
+/*
 package com.vyshyvan.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class Officers {
+public class Officers implements Serializable{
+    @Id
     @OneToOne
     @JoinColumn(name = "soldier_id")
     private Soldier soldier;
@@ -61,3 +64,4 @@ public class Officers {
         this.becameGeneral = becameGeneral;
     }
 }
+*/

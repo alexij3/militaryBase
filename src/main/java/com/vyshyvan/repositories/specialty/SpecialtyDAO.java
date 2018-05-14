@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.repositories.specialty;
 
 import com.vyshyvan.model.Specialty;
@@ -9,3 +10,4 @@ public interface SpecialtyDAO extends CrudRepository<Specialty, Integer>{
 
 }
 
+*/

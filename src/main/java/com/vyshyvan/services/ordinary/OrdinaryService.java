@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.ordinary;
 
 import com.vyshyvan.model.Ordinary;
@@ -11,3 +12,4 @@ public interface OrdinaryService {
     Ordinary deleteOrdinary(int id);
     List<Ordinary> getAll();
 }
+*/

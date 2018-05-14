@@ -1,9 +1,31 @@
 package com.vyshyvan.model;
 
-public class WeaponryInMilitaryBase {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@IdClass(WeaponryInMilitaryBaseID.class)
+@Table(name="weaponry_in_mbase")
+public class WeaponryInMilitaryBase implements Serializable{
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "military_base_id", insertable = false, updatable = false)
     private MilitaryBase militaryBase;
+
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "weaponry_id", insertable = false, updatable = false)
     private Weaponry weaponry;
+
+    @Column
     private int amount;
+
+    public WeaponryInMilitaryBase() {
+    }
 
     public WeaponryInMilitaryBase(MilitaryBase militaryBase, Weaponry weaponry, int amount) {
         this.militaryBase = militaryBase;
@@ -33,34 +55,5 @@ public class WeaponryInMilitaryBase {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        WeaponryInMilitaryBase that = (WeaponryInMilitaryBase) o;
-
-        if (amount != that.amount) return false;
-        if (militaryBase != null ? !militaryBase.equals(that.militaryBase) : that.militaryBase != null) return false;
-        return weaponry != null ? weaponry.equals(that.weaponry) : that.weaponry == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = militaryBase != null ? militaryBase.hashCode() : 0;
-        result = 31 * result + (weaponry != null ? weaponry.hashCode() : 0);
-        result = 31 * result + amount;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "WeaponryInMilitaryBase{" +
-                "militaryBase=" + militaryBase +
-                ", weaponry=" + weaponry +
-                ", amount=" + amount +
-                '}';
     }
 }

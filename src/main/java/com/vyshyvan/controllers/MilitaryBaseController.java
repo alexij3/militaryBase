@@ -1,4 +1,3 @@
-/*
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.MilitaryBase;
@@ -10,14 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/militarybase")
 public class MilitaryBaseController {
     @Autowired
     MilitaryBaseServiceImpl militaryBaseService;
 
-    @RequestMapping("/militarybase")
+    @RequestMapping("/showall")
     public List<MilitaryBase> showMilitaryBases(){
         return militaryBaseService.getAll();
     }
 }
-*/

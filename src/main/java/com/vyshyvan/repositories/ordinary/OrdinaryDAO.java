@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.repositories.ordinary;
 
 import com.vyshyvan.model.Ordinary;
@@ -9,3 +10,4 @@ public interface OrdinaryDAO extends CrudRepository<Ordinary, Integer>{
 
 }
 
+*/

@@ -1,6 +1,10 @@
 package com.vyshyvan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Transport {
@@ -21,6 +25,10 @@ public class Transport {
     @Column(name = "fightings_seats")
     private int fightingSeats;
 
+    @OneToMany(mappedBy = "transport", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<TransportInMilitaryBase> transportInMilitaryBase = new HashSet<>();
+
     public Transport() {
     }
 
@@ -29,6 +37,14 @@ public class Transport {
         this.name = name;
         this.capacity = capacity;
         this.fightingSeats = fightingSeats;
+    }
+
+    public Transport(TransportType transportType, String name, int capacity, int fightingSeats, Set<TransportInMilitaryBase> transportInMilitaryBase) {
+        this.transportType = transportType;
+        this.name = name;
+        this.capacity = capacity;
+        this.fightingSeats = fightingSeats;
+        this.transportInMilitaryBase = transportInMilitaryBase;
     }
 
     public Integer getId() {
@@ -69,5 +85,13 @@ public class Transport {
 
     public void setFightingSeats(int fightingSeats) {
         this.fightingSeats = fightingSeats;
+    }
+
+    public Set<TransportInMilitaryBase> getTransportInMilitaryBase() {
+        return transportInMilitaryBase;
+    }
+
+    public void setTransportInMilitaryBase(Set<TransportInMilitaryBase> transportInMilitaryBase) {
+        this.transportInMilitaryBase = transportInMilitaryBase;
     }
 }

@@ -8,6 +8,6 @@ public interface SoldierService {
     Soldier insertSoldier(Soldier soldier);
     Soldier getSoldier(int id);
     Soldier updateSoldier(Soldier soldier);
-    Soldier deleteSoldier(int id);
+    void deleteSoldier(int id);
     List<Soldier> getAll();
 }

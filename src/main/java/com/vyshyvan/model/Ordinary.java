@@ -1,9 +1,12 @@
+/*
 package com.vyshyvan.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Ordinary {
+public class Ordinary implements Serializable{
+    @Id
     @OneToOne
     @JoinColumn(name = "soldier_id")
     private Soldier soldier;
@@ -38,3 +41,4 @@ public class Ordinary {
 
 
 }
+*/

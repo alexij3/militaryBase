@@ -1,6 +1,7 @@
 package com.vyshyvan.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Soldier {
@@ -18,16 +19,28 @@ public class Soldier {
     @JoinColumn(name = "military_base_id", nullable = false)
     private MilitaryBase militaryBase;
 
+    @Transient
+    private int militaryBaseId;
+
     @ElementCollection(targetClass = Specialty.class)
     @CollectionTable(name = "soldier_specialty", joinColumns = @JoinColumn (name = "id_soldier", nullable = false))
+
     @Enumerated(EnumType.STRING)
     @Column(name = "specialty", nullable = false)
-    private Specialty specialty;
+    private Set<Specialty> specialty;
 
     public Soldier() {
     }
 
-    public Soldier(String name, int age, MilitaryBase militaryBase, Specialty specialty) {
+    public Soldier(String name, int age, MilitaryBase militaryBase, int militaryBaseId, Set<Specialty> specialty) {
+        this.name = name;
+        this.age = age;
+        this.militaryBase = militaryBase;
+        this.militaryBaseId = militaryBaseId;
+        this.specialty = specialty;
+    }
+
+    public Soldier(String name, int age, MilitaryBase militaryBase, Set<Specialty> specialty) {
         this.name = name;
         this.age = age;
         this.militaryBase = militaryBase;
@@ -77,11 +90,19 @@ public class Soldier {
         this.militaryBase = militaryBase;
     }
 
-    public Specialty getSpecialty() {
+    public Set<Specialty> getSpecialty() {
         return specialty;
     }
 
-    public void setSpecialty(Specialty specialty) {
+    public void setSpecialty(Set<Specialty> specialty) {
         this.specialty = specialty;
+    }
+
+    public int getMilitaryBaseId() {
+        return militaryBaseId;
+    }
+
+    public void setMilitaryBaseId(int militaryBaseId) {
+        this.militaryBaseId = militaryBaseId;
     }
 }

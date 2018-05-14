@@ -1,10 +1,17 @@
 package com.vyshyvan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Weaponry {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "weaponry_type")
     private WeaponryType weaponryType;
@@ -18,15 +25,26 @@ public class Weaponry {
     @Column
     private char silencer;
 
-    public Weaponry(Integer id, WeaponryType weaponryType, String name, String caliber, char silencer) {
-        this.id = id;
+    @OneToMany(mappedBy = "weaponry", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<WeaponryInMilitaryBase> weaponryInMilitaryBase = new HashSet<>();
+
+    public Weaponry() {
+    }
+
+    public Weaponry(WeaponryType weaponryType, String name, String caliber, char silencer) {
         this.weaponryType = weaponryType;
         this.name = name;
         this.caliber = caliber;
         this.silencer = silencer;
     }
 
-    public Weaponry() {
+    public Weaponry(WeaponryType weaponryType, String name, String caliber, char silencer, Set<WeaponryInMilitaryBase> weaponryInMilitaryBase) {
+        this.weaponryType = weaponryType;
+        this.name = name;
+        this.caliber = caliber;
+        this.silencer = silencer;
+        this.weaponryInMilitaryBase = weaponryInMilitaryBase;
     }
 
     public Integer getId() {
@@ -67,5 +85,13 @@ public class Weaponry {
 
     public void setSilencer(char silencer) {
         this.silencer = silencer;
+    }
+
+    public Set<WeaponryInMilitaryBase> getWeaponryInMilitaryBase() {
+        return weaponryInMilitaryBase;
+    }
+
+    public void setWeaponryInMilitaryBase(Set<WeaponryInMilitaryBase> weaponryInMilitaryBase) {
+        this.weaponryInMilitaryBase = weaponryInMilitaryBase;
     }
 }

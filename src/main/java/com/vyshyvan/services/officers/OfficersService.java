@@ -1,3 +1,4 @@
+/*
 package com.vyshyvan.services.officers;
 
 import com.vyshyvan.model.Officers;
@@ -11,3 +12,4 @@ public interface OfficersService {
     Officers deleteOfficers(int id);
     List<Officers> getAll();
 }
+*/
