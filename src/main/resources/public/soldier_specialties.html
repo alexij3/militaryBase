@@ -12,7 +12,7 @@
 </head>
 <body ng-app = "demo">
 Солдати
-<div class="container" style="margin-top: 30px" ng-controller = "SoldierCtrl as soldierCtrl">
+<div class="container" style="margin-top: 30px" ng-controller = "SoldierSpecialtiesCtrl as soldierSpecialtiesCtrl">
     <div class="datagrid">
         <table>
             <thead>
@@ -20,21 +20,22 @@
                 <th>&#128273ІД</th>
                 <th>Ім'я</th>
                 <th>Вік</th>
-                <th>Військова частина</th>
-                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+                <th>Спеціальності</th>
+                <th width="200"></th>
             </tr>
             </thead>
 
             <tbody>
 
-            <tr ng-repeat = "item in soldier">
+            <tr ng-repeat = "item in soldiers">
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.age}}</td>
-                <td>{{item.militaryBase.name}}</td>
+                <td>{{item.specialty.toString()}}</td>
                 <td>
-                    <button id="update" ng-click="soldierCtrl.startUpdateSoldier(item.id, item.name, item.age, item.militaryBase.name)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="soldierCtrl.deleteSoldier(item.id)" class="btn-danger">Видалити</button>
+                    <button id="create" type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center"
+                            ng-click="soldierSpecialtiesCtrl.startAddSpecialties(item.id, item.name, item.age, item.militaryBaseId)">Створити</button>
+                    <button id="delete" ng-click="soldierSpecialtiesCtrl.deleteSpecialties(item.id)" class="btn-danger">Видалити</button>
                 </td>
             </tr>
             </tbody>
@@ -51,11 +52,9 @@
                 </div>
                 <div class="modal-body">
                     <label>Ім'я:</label>
-                    <input type="text" id="soldierName" name="soldierName" /><br>
-                    <label>Вік:</label>
-                    <input type="number" min="18" id="soldierAge"/> <br>
+                    <span id="soldierName"></span><br>
                     <label>Спеціальності:</label><br>
-                    <select multiple id="specialties">
+                    <select multiple ng-model="selectedSpecialties" id="selectedSpecialties">
                         <option>Стрілець</option>
                         <option>Снайпер</option>
                         <option>Розвідник</option>
@@ -68,13 +67,10 @@
                         <option>Артилерист</option>
                         <option>Рятувальник</option>
                     </select>
-                    <label>Військова частина:</label>
-                    <select id="selectMilitaryBases">
-                    </select>
 
                 </div>
                 <div class="modal-footer">
-                    <button class = "btn btn-default" id="createSoldierButton" ng-click="soldierCtrl.createSoldier()">Створити</button>
+                    <button class = "btn btn-default" id="createSoldierSpecialtiesButton" ng-click="soldierSpecialtiesCtrl.addSpecialties()">Створити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -92,13 +88,13 @@
                 </div>
                 <div class="modal-body">
                     <label>Ім'я:</label>
-                    <input type="text" id="updateSoldierName" name="soldierName" /><br>
+                    <input type="text" id="updateSoldierSpecialtiesName" name="soldierName" /><br>
                     <label>Вік:</label>
-                    <input type="number" min="18" id="updateSoldierAge"/> <br>
+                    <input type="number" min="18" id="updateSoldierSpecialtiesAge"/> <br>
                     <label>Військова частина:</label>
                     <select id="updateMilitaryBase">
                     </select>
-                    <button id="editSoldierButton" ng-click="soldierCtrl.updateSoldier()">Змінити</button>
+                    <button id="editSoldierSpecialtiesButton" ng-click="soldierSpecialtiesCtrl.updateSoldierSpecialties()">Змінити</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
@@ -115,7 +111,7 @@
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/soldier.js"></script>
+<script type="text/javascript" src="js/soldier_specialties.js"></script>
 
 
 

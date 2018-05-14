@@ -19,7 +19,7 @@ public class Soldier {
     @JoinColumn(name = "military_base_id", nullable = false)
     private MilitaryBase militaryBase;
 
-    @Transient
+    @Column(name = "military_base_id", insertable = false, updatable = false, nullable = false)
     private int militaryBaseId;
 
     @ElementCollection(targetClass = Specialty.class)

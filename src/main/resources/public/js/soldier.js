@@ -38,7 +38,7 @@ app.controller("SoldierCtrl", function($scope, $http){
     this.createSoldier = function createSoldier(){
         var name = document.getElementById('soldierName').value;
         var age = document.getElementById('soldierAge').value;
-        var militaryBaseId = document.getElementById('militaryBase').value;
+        var militaryBaseId = document.getElementById('selectMilitaryBases').value;
 
         var createRequest = {
             method: 'PUT',

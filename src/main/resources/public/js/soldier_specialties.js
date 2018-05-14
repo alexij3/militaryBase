@@ -1,92 +1,87 @@
 var app = angular.module("demo", []);
 
-app.controller("SoldierCtrl", function($scope, $http){
-    var idToUpdate;
+app.controller("SoldierSpecialtiesCtrl", function($scope, $http) {
+    var soldierId;
+    var soldierName;
+    var soldierMilitaryBaseId;
+    var soldierAge;
+    var delSpecialties = [];
+    var specialties = [];
 
-    var time = performance.now();
-    $scope.soldier = [];
-     $http.get('/api/soldier/showall').then(function (response){
-         time = performance.now() - time;
-         console.log("Виведення відбулося за " + time + " мс.");
-         $scope.soldier=response.data;
-         console.log(response);
-
-         $http.get('/api/militarybase/showall').then(function(response){
-             var militaryBases = response.data;
-             var select = document.getElementById('selectMilitaryBases');
-
-             for (var i = 0; i < militaryBases.length; i++){
-                 var option = document.createElement("option");
-                 option.text = militaryBases[i].name;
-                 option.value = militaryBases[i].id;
-
-                 select.add(option);
-                 console.log(select);
-             }
-         });
+    $scope.soldiers = [];
+    $http.get('/api/soldier/showall').then(function (response) {
+        $scope.soldiers = response.data;
     });
 
-    this.deleteSoldier = function deleteSoldier(id){
-        var time = performance.now();
-        $http.get('/api/soldier/delete?id=' + id).then(function(){
-            time = performance.now() - time;
-            console.log("Видалення відбулося за " + time + " мс.");
-            window.location.reload();
-        });
-    };
-
-    this.createSoldier = function createSoldier(){
-        var name = document.getElementById('soldierName').value;
-        var age = document.getElementById('soldierAge').value;
-        var militaryBaseId = document.getElementById('militaryBase').value;
-
-        var createRequest = {
+    this.addSpecialties = function addSpecialties(){
+        specialties = $scope.selectedSpecialties;
+        var request = {
             method: 'PUT',
-            url: '/api/soldier/create',
-            data : {
-                name : name,
-                age : age,
-                militaryBaseId: militaryBaseId
+            url: '/api/soldier/updatespecialties?id=' + soldierId,
+            data: {
+                name : soldierName,
+                age : soldierAge,
+                specialty : specialties,
+                militaryBaseId: soldierMilitaryBaseId
             }
         };
 
-        var time = performance.now();
-        $http(createRequest).then(function(response){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            console.log(response);
+        $http(request).then(function(){
             window.location.reload();
         });
     };
 
-    this.startUpdateSoldier = function startUpdateSoldier(id, name){
-        document.getElementById('updateSoldierName').value = name;
-        idToUpdate = id;
+    this.startAddSpecialties = function startAddSpecialties(id, name, age, militaryBaseId){
+        soldierId = id;
+        soldierName = name;
+        soldierAge = age;
+        soldierMilitaryBaseId = militaryBaseId;
+        document.getElementById('soldierName').innerHTML = name;
     };
 
-    this.updateSoldier = function updateSoldier(){
-        var name = document.getElementById('updateSoldierName').value;
+    this.startDeleteSpecialties = function startDeleteSpecialties(idSoldier, name, specialtiesToDelete){
+        soldierId = idSoldier;
+        soldierName = name;
+        document.getElementById('delArtistName').innerHTML = name;
+
+        specialties = specialtiesToDelete;
+        var select = document.getElementById('delSelectSpecialties');
+
+        for (var i = 0; i < specialties.length; i++) {
+            var option = document.createElement("option");
+            option.text = specialties[i];
+            option.value = specialties[i];
+
+            select.add(option);
+
+            console.log(select);
+        }
+    };
+
+    this.deleteSpecialties = function deleteSpecialties(){
+        specialties = $('#delSelectSpecialties').val();
         var request = {
             method: 'POST',
-            url : '/api/soldier/update?id=' + idToUpdate,
+            url: '/api/soldier/deletespecialties?soldierId=' + soldierId,
             data: {
-                name : name
+                name : soldierName,
+                specialty : specialties
             }
         };
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            console.log(response);
+        $http(request).then(function(response){
+            document.getElementById('delSelectSpecialties').options.length = 0;
             window.location.reload();
         });
     };
 
-    this.getSoldier = function getSoldier(id){
-        $http.get('/api/soldier/get?id=' + id);
+    function removeItems(selectBox){
+        for (var i = selectBox.length-1; i >= 0; i--){
+            selectBox.remove(i);
+        }
+    }
+
+    this.onClose = function onClose(){
+        removeItems(document.getElementById('delSelectSpecialties'));
     }
 });
-
-
-
