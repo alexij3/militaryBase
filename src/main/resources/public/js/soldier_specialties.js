@@ -39,10 +39,12 @@ app.controller("SoldierSpecialtiesCtrl", function($scope, $http) {
         document.getElementById('soldierName').innerHTML = name;
     };
 
-    this.startDeleteSpecialties = function startDeleteSpecialties(idSoldier, name, specialtiesToDelete){
+    this.startDeleteSpecialties = function startDeleteSpecialties(idSoldier, age, name, specialtiesToDelete, militaryBaseId){
         soldierId = idSoldier;
         soldierName = name;
-        document.getElementById('delArtistName').innerHTML = name;
+        soldierMilitaryBaseId = militaryBaseId;
+        soldierAge = age;
+        document.getElementById('delSoldierName').innerHTML = name;
 
         specialties = specialtiesToDelete;
         var select = document.getElementById('delSelectSpecialties');
@@ -65,7 +67,9 @@ app.controller("SoldierSpecialtiesCtrl", function($scope, $http) {
             url: '/api/soldier/deletespecialties?soldierId=' + soldierId,
             data: {
                 name : soldierName,
-                specialty : specialties
+                specialty : specialties,
+                militaryBaseId : soldierMilitaryBaseId,
+                age : soldierAge
             }
         };
 

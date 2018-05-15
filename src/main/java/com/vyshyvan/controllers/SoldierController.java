@@ -48,16 +48,17 @@ public class SoldierController {
     }
 
     @RequestMapping("/updatespecialties")
-    public Soldier updateSpecialties(@RequestParam("id") int id, @RequestBody Soldier soldier){
+    public void updateSpecialties(@RequestParam("id") int id, @RequestBody Soldier soldier){
         soldier.setId(id);
         soldier.setMilitaryBase(militaryBaseService.getMilitaryBase(soldier.getMilitaryBaseId()));
-        return soldierService.updateSoldier(soldier);
+        soldierService.updateSpecialties(soldier);
     }
 
     @RequestMapping("/deletespecialties")
-    public void deleteSpecialties(@RequestParam("id") int id, @RequestBody Soldier soldier){
+    public void deleteSpecialties(@RequestParam("soldierId") int id, @RequestBody Soldier soldier){
         soldier.setId(id);
         soldier.setMilitaryBase(militaryBaseService.getMilitaryBase(soldier.getMilitaryBaseId()));
+        soldierService.deleteSpecialties(soldier);
     }
 
 }

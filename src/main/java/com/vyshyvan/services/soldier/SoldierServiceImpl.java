@@ -36,4 +36,18 @@ public class SoldierServiceImpl implements SoldierService {
     public List<Soldier> getAll() {
         return (List<Soldier>) soldierDAO.findAll();
     }
+
+    @Override
+    public void updateSpecialties(Soldier soldier) {
+        Soldier updatedSoldier = getSoldier(soldier.getId());
+        updatedSoldier.getSpecialty().addAll(soldier.getSpecialty());
+        soldierDAO.save(updatedSoldier);
+    }
+
+    @Override
+    public void deleteSpecialties(Soldier soldier) {
+        Soldier updatedSoldier = getSoldier(soldier.getId());
+        updatedSoldier.getSpecialty().removeAll(soldier.getSpecialty());
+        soldierDAO.save(updatedSoldier);
+    }
 }

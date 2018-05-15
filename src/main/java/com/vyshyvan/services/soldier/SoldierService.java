@@ -9,5 +9,7 @@ public interface SoldierService {
     Soldier getSoldier(int id);
     Soldier updateSoldier(Soldier soldier);
     void deleteSoldier(int id);
+    void updateSpecialties(Soldier soldier);
+    void deleteSpecialties(Soldier soldier);
     List<Soldier> getAll();
 }
