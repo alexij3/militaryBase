@@ -17,20 +17,32 @@ public class MilitaryBase {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="army_id", nullable = false)
+    @JoinColumn(name="army_id", nullable = false, insertable = false, updatable = false)
     private Army army;
 
+    @Column(name = "army_id")
+    private int armyId;
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "division_id")
+    @JoinColumn(name = "division_id" , nullable = false, insertable = false, updatable = false)
     private Division division;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "corps_id")
-    private Corps corps;
+    @Column(name = "division_id")
+    private Integer divisionId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "brigade_id")
+    @JoinColumn(name = "corps_id",nullable = false, insertable = false, updatable = false)
+    private Corps corps;
+
+    @Column(name = "corps_id")
+    private Integer corpsId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "brigade_id", nullable = false, insertable = false, updatable = false)
     private Brigade brigade;
+
+    @Column(name = "brigade_id")
+    private Integer brigadeId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="military_base_dislocation", joinColumns = @JoinColumn(name = "military_base_id", referencedColumnName = "id", nullable = false),
@@ -51,6 +63,22 @@ public class MilitaryBase {
 
 
     public MilitaryBase() {
+    }
+
+    public MilitaryBase(String name, Army army, int armyId, Division division, Integer divisionId, Corps corps, Integer corpsId, Brigade brigade, Integer brigadeId, Set<Buildings> dislocation, Soldier captain, Set<TransportInMilitaryBase> transportInMilitaryBase, Set<WeaponryInMilitaryBase> weaponryInMilitaryBase) {
+        this.name = name;
+        this.army = army;
+        this.armyId = armyId;
+        this.division = division;
+        this.divisionId = divisionId;
+        this.corps = corps;
+        this.corpsId = corpsId;
+        this.brigade = brigade;
+        this.brigadeId = brigadeId;
+        this.dislocation = dislocation;
+        this.captain = captain;
+        this.transportInMilitaryBase = transportInMilitaryBase;
+        this.weaponryInMilitaryBase = weaponryInMilitaryBase;
     }
 
     public MilitaryBase(String name, Army army, Division division, Corps corps, Brigade brigade, Set<Buildings> dislocation, Soldier captain, Set<TransportInMilitaryBase> transportInMilitaryBase, Set<WeaponryInMilitaryBase> weaponryInMilitaryBase) {
@@ -143,5 +171,37 @@ public class MilitaryBase {
 
     public void setWeaponryInMilitaryBase(Set<WeaponryInMilitaryBase> weaponryInMilitaryBase) {
         this.weaponryInMilitaryBase = weaponryInMilitaryBase;
+    }
+
+    public int getArmyId() {
+        return armyId;
+    }
+
+    public void setArmyId(int armyId) {
+        this.armyId = armyId;
+    }
+
+    public Integer getDivisionId() {
+        return divisionId;
+    }
+
+    public void setDivisionId(Integer divisionId) {
+        this.divisionId = divisionId;
+    }
+
+    public Integer getCorpsId() {
+        return corpsId;
+    }
+
+    public void setCorpsId(Integer corpsId) {
+        this.corpsId = corpsId;
+    }
+
+    public Integer getBrigadeId() {
+        return brigadeId;
+    }
+
+    public void setBrigadeId(Integer brigadeId) {
+        this.brigadeId = brigadeId;
     }
 }

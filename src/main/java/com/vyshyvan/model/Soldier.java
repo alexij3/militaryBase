@@ -15,11 +15,11 @@ public class Soldier {
     @Column
     private int age;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "military_base_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "military_base_id", insertable = false, updatable = false, nullable = false)
     private MilitaryBase militaryBase;
 
-    @Column(name = "military_base_id", insertable = false, updatable = false, nullable = false)
+    @Column(name = "military_base_id")
     private int militaryBaseId;
 
     @ElementCollection(targetClass = Specialty.class)
