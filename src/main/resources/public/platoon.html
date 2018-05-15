@@ -3,53 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <title>Взводи</title>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+
 
 </head>
 <body ng-app = "demo">
-<div class="container" style="margin-top: 30px" ng-controller = "AppCtrl as ctrl" >
-    <div class="row">
-        <div class="col-md12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Взводи</div>
-                <div class="panel-body">
+Взводи
+<div class="container" style="margin-top: 30px" ng-controller = "PlatoonCtrl as platoonCtrl">
+    <div class="datagrid">
+        <table>
+            <thead>
+            <tr>
+                <th>&#128273ІД</th>
+                <th>Номер</th>
+                <th>Назва</th>
+                <th>Рота</th>
+                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+            </tr>
+            </thead>
 
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
+            <tbody>
 
-                            <th>&#128273id</th>
-                            <th>Кодовий номер</th>
-                            <th>Назва взводу</th>
-                            <th>Рота</th>
+            <tr ng-repeat = "item in platoon">
+                <td>{{item.id}}</td>
+                <td>{{item.codeNumber}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.squadron.name}}</td>
+                <td>
+                    <button id="update" ng-click="platoonCtrl.startUpdatePlatoon(item.id, item.name, item.codeNumber, item.squadronId)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="platoonCtrl.deletePlatoon(item.id)" class="btn-danger">Видалити</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-                        </tr>
-                        </thead>
-
-                        <tbody>
-
-                        <tr ng-repeat = "item in platoons">
-                            <td>{{item.id}}</td>
-                            <td>{{item.codeNumber}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.squadron.name}}</td>
-                        </tr>
-
-                        </tbody>
-
-
-                    </table>
+    <!-- Додавання армії -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Кодовий номер:</label>
+                    <input type="text" id="platoonCode" name="platoonCode" /> <br>
+                    <label>Назва:</label>
+                    <input type="text" id="platoonName" name="platoonName" /><br>
+                    <label>Рота: </label>
+                    <select id="selectSquadron"></select> <br>
 
                 </div>
+                <div class="modal-footer">
+                    <button class = "btn btn-default" id="createPlatoonButton" ng-click="platoonCtrl.createPlatoon()">Створити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
             </div>
+
         </div>
     </div>
 
+    <!-- Редагування армії -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Кодовий номер:</label>
+                    <input type="text" id="updatePlatoonCode" name="updatePlatoonCode" /> <br>
+                    <label>Назва:</label>
+                    <input type="text" id="updatePlatoonName" name="updatePlatoonName" /><br>
+                    <label>Рота: </label>
+                    <select id="updateSelectSquadron"></select> <br>
+                    <button id="editPlatoonButton" ng-click="platoonCtrl.updatePlatoon()">Змінити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>
 
 
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/platoon.js"></script>
+
+
+
+
 </body>
 </html>

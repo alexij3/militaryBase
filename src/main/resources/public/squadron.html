@@ -3,53 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Роти</title>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+
 
 </head>
 <body ng-app = "demo">
-<div class="container" style="margin-top: 30px" ng-controller = "AppCtrl as ctrl" >
-    <div class="row">
-        <div class="col-md12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Роти</div>
-                <div class="panel-body">
+Роти
+<div class="container" style="margin-top: 30px" ng-controller = "SquadronCtrl as squadronCtrl">
+    <div class="datagrid">
+        <table>
+            <thead>
+            <tr>
+                <th>&#128273ІД</th>
+                <th>Номер</th>
+                <th>Назва</th>
+                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+            </tr>
+            </thead>
 
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
+            <tbody>
 
-                            <th>&#128273id</th>
-                            <th>Кодовий номер</th>
-                            <th>Назва роти</th>
-                            <th>Військова частина</th>
+            <tr ng-repeat = "item in squadron">
+                <td>{{item.id}}</td>
+                <td>{{item.codeNumber}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                    <button id="update" ng-click="squadronCtrl.startUpdateSquadron(item.id, item.name, item.codeNumber)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="squadronCtrl.deleteSquadron(item.id)" class="btn-danger">Видалити</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-                        </tr>
-                        </thead>
-
-                        <tbody>
-
-                        <tr ng-repeat = "item in squadrons">
-                            <td>{{item.id}}</td>
-                            <td>{{item.codeNumber}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.militaryBase.name}}</td>
-                        </tr>
-
-                        </tbody>
-
-
-                    </table>
+    <!-- Додавання армії -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Кодовий номер:</label>
+                    <input type="text" id="squadronCode" name="squadronCode" /> <br>
+                    <label>Назва:</label>
+                    <input type="text" id="squadronName" name="squadronName" />
 
                 </div>
+                <div class="modal-footer">
+                    <button class = "btn btn-default" id="createSquadronButton" ng-click="squadronCtrl.createSquadron()">Створити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
             </div>
+
         </div>
     </div>
 
+    <!-- Редагування армії -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Кодовий номер:</label>
+                    <input type="text" id="updateSquadronCode" name="updateSquadronCode" /> <br>
+                    <label>Назва:</label>
+                    <input type="text" id="updateSquadronName" name="updateSquadronName" />
+                    <button id="editSquadronButton" ng-click="squadronCtrl.updateSquadron()">Змінити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>
 
 
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/squadron.js"></script>
+
+
+
+
 </body>
 </html>

@@ -8,6 +8,6 @@ public interface SquadronService {
     Squadron insertSquadron(Squadron squadron);
     Squadron getSquadron(int id);
     Squadron updateSquadron(Squadron squadron);
-    Squadron deleteSquadron(int id);
+    void deleteSquadron(int id);
     List<Squadron> getAll();
 }

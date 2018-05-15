@@ -8,6 +8,6 @@ public interface DivisionService {
     Division insertDivision(Division division);
     Division getDivision(int id);
     Division updateDivision(Division division);
-    Division deleteDivision(int id);
+    void deleteDivision(int id);
     List<Division> getAll();
 }

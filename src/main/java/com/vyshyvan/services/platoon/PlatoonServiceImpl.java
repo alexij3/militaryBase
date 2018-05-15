@@ -1,8 +1,7 @@
-/*
 package com.vyshyvan.services.platoon;
 
-import com.vyshyvan.dao.platoon.PlatoonDAOImpl;
 import com.vyshyvan.model.Platoon;
+import com.vyshyvan.repositories.platoon.PlatoonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,31 +10,30 @@ import java.util.List;
 @Service
 public class PlatoonServiceImpl implements PlatoonService {
     @Autowired
-    PlatoonDAOImpl platoonDAO;
+    PlatoonDAO platoonDAO;
 
     @Override
     public Platoon insertPlatoon(Platoon platoon) {
-        return platoonDAO.insertPlatoon(platoon);
+        return platoonDAO.save(platoon);
     }
 
     @Override
     public Platoon getPlatoon(int id) {
-        return platoonDAO.getPlatoon(id);
+        return platoonDAO.findById(id).get();
     }
 
     @Override
     public Platoon updatePlatoon(Platoon platoon) {
-        return platoonDAO.updatePlatoon(platoon);
+        return platoonDAO.save(platoon);
     }
 
     @Override
-    public Platoon deletePlatoon(int id) {
-        return platoonDAO.deletePlatoon(id);
+    public void deletePlatoon(int id) {
+        platoonDAO.deleteById(id);
     }
 
     @Override
     public List<Platoon> getAll() {
-        return platoonDAO.getAll();
+        return (List<Platoon>) platoonDAO.findAll();
     }
 }
-*/

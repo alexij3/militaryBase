@@ -8,6 +8,6 @@ public interface CorpsService {
     Corps insertCorps(Corps corps);
     Corps getCorps(int id);
     Corps updateCorps(Corps corps);
-    Corps deleteCorps(int id);
+    void deleteCorps(int id);
     List<Corps> getAll();
 }

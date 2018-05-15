@@ -1,31 +1,32 @@
 var app = angular.module("demo", []);
 
-app.controller("ArmyCtrl", function($scope, $http){
+app.controller("DivisionCtrl", function($scope, $http){
     var idToUpdate;
+
     var time = performance.now();
-    $scope.armies = [];
-     $http.get('/api/army/showall').then(function (response){
+    $scope.division = [];
+     $http.get('/api/division/showall').then(function (response){
          time = performance.now() - time;
          console.log("Виведення відбулося за " + time + " мс.");
-        $scope.armies=response.data;
+        $scope.division=response.data;
         console.log(response);
     });
 
-    this.deleteArmy = function deleteArmy(id){
+    this.deleteDivision = function deleteDivision(id){
         var time = performance.now();
-        $http.get('/api/army/delete?id=' + id).then(function(){
+        $http.get('/api/division/delete?id=' + id).then(function(){
             time = performance.now() - time;
             console.log("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
     };
 
-    this.createArmy = function createArmy(){
-        var name = document.getElementById('armyName').value;
-        var codeNumber = document.getElementById('armyCode').value;
+    this.createDivision = function createDivision(){
+        var name = document.getElementById('divisionName').value;
+        var codeNumber = document.getElementById('divisionCode').value;
         var createRequest = {
             method: 'PUT',
-            url: '/api/army/create',
+            url: '/api/division/create',
             data : {
                 codeNumber : codeNumber,
                 name : name
@@ -41,18 +42,18 @@ app.controller("ArmyCtrl", function($scope, $http){
         });
     };
 
-    this.startUpdateArmy = function startUpdateArmy(id, name, code){
-        document.getElementById('updateArmyName').value = name;
-        document.getElementById('updateArmyCode').value = code;
+    this.startUpdateDivision = function startUpdateDivision(id, name, code){
+        document.getElementById('updateDivisionName').value = name;
+        document.getElementById('updateDivisionCode').value = code;
         idToUpdate = id;
     };
 
-    this.updateArmy = function updateArmy(){
-        var name = document.getElementById('updateArmyName').value;
-        var codeNumber = document.getElementById('updateArmyCode').value;
+    this.updateDivision = function updateDivision(){
+        var name = document.getElementById('updateDivisionName').value;
+        var codeNumber = document.getElementById('updateDivisionCode').value;
         var request = {
             method: 'POST',
-            url : '/api/army/update?id=' + idToUpdate,
+            url : '/api/division/update?id=' + idToUpdate,
             data: {
                 codeNumber : codeNumber,
                 name : name
@@ -68,8 +69,8 @@ app.controller("ArmyCtrl", function($scope, $http){
         });
     };
 
-    this.getArmy = function getArmy(id){
-        $http.get('/api/army/get?id=' + id);
+    this.getDivision = function getDivision(id){
+        $http.get('/api/division/get?id=' + id);
     }
 });
 

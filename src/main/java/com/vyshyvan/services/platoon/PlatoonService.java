@@ -8,6 +8,6 @@ public interface PlatoonService {
     Platoon insertPlatoon(Platoon platoon);
     Platoon getPlatoon(int id);
     Platoon updatePlatoon(Platoon platoon);
-    Platoon deletePlatoon(int id);
+    void deletePlatoon(int id);
     List<Platoon> getAll();
 }
