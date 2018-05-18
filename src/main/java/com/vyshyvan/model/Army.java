@@ -1,6 +1,9 @@
 package com.vyshyvan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Army {
@@ -13,6 +16,10 @@ public class Army {
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "army", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<MilitaryBase> militaryBase;
 
     public Army() {
     }

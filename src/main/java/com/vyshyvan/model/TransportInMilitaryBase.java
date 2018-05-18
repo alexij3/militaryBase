@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Table(name="transport_in_mbase")
 public class TransportInMilitaryBase implements Serializable{
     @Id
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "military_base_id", insertable = false, updatable = false)
     private MilitaryBase militaryBase;
 

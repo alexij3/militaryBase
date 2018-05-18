@@ -1,7 +1,9 @@
 package com.vyshyvan.controllers;
 
+import com.vyshyvan.model.MilitaryBase;
 import com.vyshyvan.model.Soldier;
 import com.vyshyvan.services.militarybase.MilitaryBaseService;
+import com.vyshyvan.services.militarybase.MilitaryBaseServiceImpl;
 import com.vyshyvan.services.soldier.SoldierServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +20,7 @@ public class SoldierController {
     SoldierServiceImpl soldierService;
 
     @Autowired
-    MilitaryBaseService militaryBaseService;
+    MilitaryBaseServiceImpl militaryBaseService;
 
     @RequestMapping("/showall")
     public List<Soldier> showSoldiers(){
