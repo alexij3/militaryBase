@@ -8,6 +8,6 @@ public interface TransportInMilitaryBaseService {
     TransportInMilitaryBase insertTransportInMilitaryBase(TransportInMilitaryBase transportInMilitaryBase);
     TransportInMilitaryBase getTransportInMilitaryBase(int id);
     TransportInMilitaryBase updateTransportInMilitaryBase(TransportInMilitaryBase transportInMilitaryBase);
-    TransportInMilitaryBase deleteTransportInMilitaryBase(int id);
+    void deleteTransportInMilitaryBase(int id);
     List<TransportInMilitaryBase> getAll();
 }

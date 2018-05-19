@@ -8,6 +8,6 @@ public interface WeaponryInMilitaryBaseService {
     WeaponryInMilitaryBase insertWeaponryInMilitaryBase(WeaponryInMilitaryBase weaponryInMilitaryBase);
     WeaponryInMilitaryBase getWeaponryInMilitaryBase(int id);
     WeaponryInMilitaryBase updateWeaponryInMilitaryBase(WeaponryInMilitaryBase weaponryInMilitaryBase);
-    WeaponryInMilitaryBase deleteWeaponryInMilitaryBase(int id);
+    void deleteWeaponryInMilitaryBase(int id);
     List<WeaponryInMilitaryBase> getAll();
 }

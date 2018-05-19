@@ -1,8 +1,7 @@
-/*
 package com.vyshyvan.services.weaponryinmilitarybase;
 
-import com.vyshyvan.dao.weaponryinmilitarybase.WeaponryInMilitaryBaseDAO;
 import com.vyshyvan.model.WeaponryInMilitaryBase;
+import com.vyshyvan.repositories.weaponryinmilitarybase.WeaponryInMilitaryBaseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,27 +14,26 @@ public class WeaponryInMilitaryBaseServiceImpl implements WeaponryInMilitaryBase
 
     @Override
     public WeaponryInMilitaryBase insertWeaponryInMilitaryBase(WeaponryInMilitaryBase weaponryInMilitaryBase) {
-        return weaponryInMilitaryBaseDAO.insertWeaponryInMilitaryBase(weaponryInMilitaryBase);
+        return weaponryInMilitaryBaseDAO.save(weaponryInMilitaryBase);
     }
 
     @Override
     public WeaponryInMilitaryBase getWeaponryInMilitaryBase(int id) {
-        return weaponryInMilitaryBaseDAO.getWeaponryInMilitaryBase(id);
+        return weaponryInMilitaryBaseDAO.findById(id).get();
     }
 
     @Override
     public WeaponryInMilitaryBase updateWeaponryInMilitaryBase(WeaponryInMilitaryBase weaponryInMilitaryBase) {
-        return weaponryInMilitaryBaseDAO.updateWeaponryInMilitaryBase(weaponryInMilitaryBase);
+        return weaponryInMilitaryBaseDAO.save(weaponryInMilitaryBase);
     }
 
     @Override
-    public WeaponryInMilitaryBase deleteWeaponryInMilitaryBase(int id) {
-        return weaponryInMilitaryBaseDAO.deleteWeaponryInMilitaryBase(id);
+    public void deleteWeaponryInMilitaryBase(int id) {
+        weaponryInMilitaryBaseDAO.deleteById(id);
     }
 
     @Override
     public List<WeaponryInMilitaryBase> getAll() {
-        return weaponryInMilitaryBaseDAO.getAll();
+        return (List<WeaponryInMilitaryBase>) weaponryInMilitaryBaseDAO.findAll();
     }
 }
-*/

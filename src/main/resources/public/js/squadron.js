@@ -10,7 +10,33 @@ app.controller("SquadronCtrl", function($scope, $http){
          console.log("Виведення відбулося за " + time + " мс.");
         $scope.squadron=response.data;
         console.log(response);
+         $http.get('/api/militarybase/showall').then(function(response){
+             var militaryBases = [];
+             militaryBases = response.data;
+             var select = document.getElementById('militaryBase');
+             var selectMilitaryBaseUpd = document.getElementById('updateMilitaryBase');
+
+             for (var i = 0; i < militaryBases.length; i++) {
+                 var option = document.createElement("option");
+                 option.text = militaryBases[i].name;
+                 option.value = militaryBases[i].id;
+
+                 select.add(option);
+
+                 console.log(select);
+             }
+
+             for (var j = 0; j < militaryBases.length; j++){
+                 var option2 = document.createElement("option");
+                 option2.text = militaryBases[j].name;
+                 option2.value = militaryBases[j].id;
+
+                 selectMilitaryBaseUpd.add(option2);
+                 console.log(selectMilitaryBaseUpd);
+             }
+         });
     });
+
 
     this.deleteSquadron = function deleteSquadron(id){
         var time = performance.now();
@@ -22,11 +48,12 @@ app.controller("SquadronCtrl", function($scope, $http){
     };
 
     this.createSquadron = function createSquadron(){
+        var militaryBaseId = document.getElementById('militaryBase').value;
         var name = document.getElementById('squadronName').value;
         var codeNumber = document.getElementById('squadronCode').value;
         var createRequest = {
             method: 'PUT',
-            url: '/api/squadron/create',
+            url: '/api/squadron/create?mbaseId=' + militaryBaseId,
             data : {
                 codeNumber : codeNumber,
                 name : name
@@ -42,18 +69,20 @@ app.controller("SquadronCtrl", function($scope, $http){
         });
     };
 
-    this.startUpdateSquadron = function startUpdateSquadron(id, name, code){
+    this.startUpdateSquadron = function startUpdateSquadron(id, mbaseId, name, code){
+        document.getElementById('updateMilitaryBase').value = mbaseId;
         document.getElementById('updateSquadronName').value = name;
         document.getElementById('updateSquadronCode').value = code;
         idToUpdate = id;
     };
 
     this.updateSquadron = function updateSquadron(){
+        var militaryBaseId = document.getElementById('updateMilitaryBase').value;
         var name = document.getElementById('updateSquadronName').value;
         var codeNumber = document.getElementById('updateSquadronCode').value;
         var request = {
             method: 'POST',
-            url : '/api/squadron/update?id=' + idToUpdate,
+            url : '/api/squadron/update?id=' + idToUpdate + '&mbaseId=' + militaryBaseId,
             data: {
                 codeNumber : codeNumber,
                 name : name

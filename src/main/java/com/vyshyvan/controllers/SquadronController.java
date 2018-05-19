@@ -1,5 +1,6 @@
 package com.vyshyvan.controllers;
 
+import com.vyshyvan.model.MilitaryBase;
 import com.vyshyvan.model.Squadron;
 import com.vyshyvan.services.squadron.SquadronServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,18 @@ public class SquadronController {
     }
 
     @RequestMapping("/create")
-    public Squadron create(@RequestBody Squadron squadron) {
+    public Squadron create(@RequestParam("mbaseId") int mbaseId, @RequestBody Squadron squadron) {
+        MilitaryBase militaryBase = new MilitaryBase();
+        militaryBase.setId(mbaseId);
+        squadron.setMilitaryBase(militaryBase);
         return squadronService.insertSquadron(squadron);
     }
 
     @RequestMapping("/update")
-    public Squadron updateSquadron(@RequestParam("id") Integer id, @RequestBody Squadron squadron) {
+    public Squadron updateSquadron(@RequestParam("id") Integer id, @RequestParam("mbaseId") int mbaseId, @RequestBody Squadron squadron) {
+        MilitaryBase militaryBase = new MilitaryBase();
+        militaryBase.setId(mbaseId);
+        squadron.setMilitaryBase(militaryBase);
         squadron.setId(id);
         return squadronService.updateSquadron(squadron);
     }

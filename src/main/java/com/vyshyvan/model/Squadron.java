@@ -3,6 +3,7 @@ package com.vyshyvan.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,10 @@ public class Squadron {
     @JsonIgnore
     private Set<Platoon> platoons;
 
+    @ManyToOne
+    @NotNull
+    private MilitaryBase militaryBase;
+
     public Squadron() {
     }
 
@@ -33,6 +38,13 @@ public class Squadron {
         this.codeNumber = codeNumber;
         this.name = name;
         this.platoons = platoons;
+    }
+
+    public Squadron(String codeNumber, String name, Set<Platoon> platoons, @NotNull MilitaryBase militaryBase) {
+        this.codeNumber = codeNumber;
+        this.name = name;
+        this.platoons = platoons;
+        this.militaryBase = militaryBase;
     }
 
     public Set<Platoon> getPlatoons() {
@@ -65,5 +77,13 @@ public class Squadron {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public MilitaryBase getMilitaryBase() {
+        return militaryBase;
+    }
+
+    public void setMilitaryBase(MilitaryBase militaryBase) {
+        this.militaryBase = militaryBase;
     }
 }
