@@ -8,6 +8,6 @@ public interface TransportService {
     Transport insertTransport(Transport transport);
     Transport getTransport(int id);
     Transport updateTransport(Transport transport);
-    Transport deleteTransport(int id);
+    void deleteTransport(int id);
     List<Transport> getAll();
 }

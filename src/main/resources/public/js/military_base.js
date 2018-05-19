@@ -144,22 +144,17 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
     this.createMilitaryBase = function createMilitaryBase(){
         var name = document.getElementById('militaryBaseName').value;
         var armyId = document.getElementById('selectArmy').value;
-        var divisionId = document.getElementById('selectDivision').value;
+        var divisionId = document.getElementById('selectDivision').text;
+        window.alert(divisionId);
         var corpsId = document.getElementById('selectCorps').value;
         var brigadeId = document.getElementById('selectBrigade').value;
         var captainId = document.getElementById('selectCaptain').value;
 
+        window.alert(divisionId);
+
         var request = {
             method: 'PUT',
-            url: '/api/militarybase/create',
-            data: {
-                name : name,
-                armyId: armyId,
-                divisionId : divisionId,
-                corpsId : corpsId,
-                brigadeId : brigadeId,
-                captainId : captainId
-            }
+            url: '/api/militarybase/create?armyId=' + armyId + '&divisionId=' + divisionId
         };
 
         var time = performance.now();
@@ -171,17 +166,6 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
 
         window.location.reload();
     };
-});
-
-$(function(){
-    var divisionRadio = $("#divisionRadio");
-    var divisionSelect = $("#selectDivision");
-
-    divisionRadio.change(function(){
-        if (this.checked) {
-            divisionSelect.disabled = true;
-        }else  divisionSelect.disabled = true;
-    });
 });
 
 

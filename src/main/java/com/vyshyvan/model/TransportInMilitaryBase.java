@@ -3,23 +3,26 @@ package com.vyshyvan.model;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@IdClass(TransportInMilitaryBaseID.class)
 @Table(name="transport_in_mbase")
 public class TransportInMilitaryBase implements Serializable{
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "military_base_id", insertable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @NotNull
     private MilitaryBase militaryBase;
 
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "transport_id", insertable = false, updatable = false)
+    @ManyToOne
+    @NotNull
     private Transport transport;
 
     @Column
+    @NotNull
     private int amount;
 
     public TransportInMilitaryBase() {
@@ -53,5 +56,13 @@ public class TransportInMilitaryBase implements Serializable{
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

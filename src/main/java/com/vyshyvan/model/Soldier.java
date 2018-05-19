@@ -24,7 +24,6 @@ public class Soldier {
 
     @ElementCollection(targetClass = Specialty.class)
     @CollectionTable(name = "soldier_specialty", joinColumns = @JoinColumn (name = "id_soldier", nullable = false))
-
     @Enumerated(EnumType.STRING)
     @Column(name = "specialty", nullable = false)
     private Set<Specialty> specialty;

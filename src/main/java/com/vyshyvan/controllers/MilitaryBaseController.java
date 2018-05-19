@@ -1,6 +1,6 @@
 package com.vyshyvan.controllers;
 
-import com.vyshyvan.model.MilitaryBase;
+import com.vyshyvan.model.*;
 import com.vyshyvan.services.army.ArmyServiceImpl;
 import com.vyshyvan.services.division.DivisionService;
 import com.vyshyvan.services.militarybase.MilitaryBaseServiceImpl;
@@ -26,11 +26,21 @@ public class MilitaryBaseController {
     }
 
     @RequestMapping("/create")
-    public MilitaryBase create(@RequestBody MilitaryBase militaryBase){
-        System.out.println(militaryBase.getArmyId());
-        //militaryBase.setArmy(armyService.getArmy(militaryBase.getArmyId()));
-       /* if (militaryBase.getDivisionId() != null){
-        }*/
+    public MilitaryBase create(int armyId, int divisionId, int corpsId, int brigadeId, int captainId){
+        Army army = new Army();
+        Division division = new Division();
+        Corps corps = new Corps();
+        Brigade brigade = new Brigade();
+        Soldier soldier = new Soldier();
+
+        army.setId(armyId);
+        /*division.setId(divisionId);
+        corps.setId(corpsId);
+        brigade.setId(brigadeId);
+        soldier.setId(captainId);*/
+
+        MilitaryBase militaryBase = new MilitaryBase("somename", army, null, null, null, null);
+
         return militaryBaseService.insertMilitaryBase(militaryBase);
     }
 

@@ -8,6 +8,6 @@ public interface WeaponryService {
     Weaponry insertWeaponry(Weaponry weaponry);
     Weaponry getWeaponry(int id);
     Weaponry updateWeaponry(Weaponry weaponry);
-    Weaponry deleteWeaponry(int id);
+    void deleteWeaponry(int id);
     List<Weaponry> getAll();
 }

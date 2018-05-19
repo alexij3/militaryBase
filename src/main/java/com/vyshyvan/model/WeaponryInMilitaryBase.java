@@ -3,25 +3,28 @@ package com.vyshyvan.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@IdClass(WeaponryInMilitaryBaseID.class)
 @Table(name="weaponry_in_mbase")
 public class WeaponryInMilitaryBase implements Serializable{
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "military_base_id", insertable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @NotNull
     private MilitaryBase militaryBase;
 
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "weaponry_id", insertable = false, updatable = false)
+    @ManyToOne
+    @NotNull
     private Weaponry weaponry;
 
     @Column
+    @NotNull
     private int amount;
 
     public WeaponryInMilitaryBase() {
@@ -55,5 +58,13 @@ public class WeaponryInMilitaryBase implements Serializable{
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -1,8 +1,7 @@
-/*
 package com.vyshyvan.services.weaponry;
 
-import com.vyshyvan.dao.weaponry.WeaponryDAOImpl;
 import com.vyshyvan.model.Weaponry;
+import com.vyshyvan.repositories.weaponry.WeaponryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,31 +10,30 @@ import java.util.List;
 @Component
 public class WeaponryServiceImpl implements WeaponryService{
     @Autowired
-    WeaponryDAOImpl weaponryDAO;
+    WeaponryDAO weaponryDAO;
 
     @Override
     public Weaponry insertWeaponry(Weaponry weaponry) {
-        return weaponryDAO.insertWeaponry(weaponry);
+        return weaponryDAO.save(weaponry);
     }
 
     @Override
     public Weaponry getWeaponry(int id) {
-        return weaponryDAO.getWeaponry(id);
+        return weaponryDAO.findById(id).get();
     }
 
     @Override
     public Weaponry updateWeaponry(Weaponry weaponry) {
-        return weaponryDAO.updateWeaponry(weaponry);
+        return weaponryDAO.save(weaponry);
     }
 
     @Override
-    public Weaponry deleteWeaponry(int id) {
-        return weaponryDAO.deleteWeaponry(id);
+    public void deleteWeaponry(int id) {
+        weaponryDAO.deleteById(id);
     }
 
     @Override
     public List<Weaponry> getAll() {
-        return weaponryDAO.getAll();
+        return (List<Weaponry>) weaponryDAO.findAll();
     }
 }
-*/
