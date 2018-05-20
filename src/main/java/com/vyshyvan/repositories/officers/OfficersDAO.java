@@ -1,4 +1,3 @@
-/*
 package com.vyshyvan.repositories.officers;
 
 import com.vyshyvan.model.Officers;
@@ -9,4 +8,3 @@ import org.springframework.stereotype.Repository;
 public interface OfficersDAO extends CrudRepository<Officers, Integer>{
 
 }
-*/

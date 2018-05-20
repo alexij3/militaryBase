@@ -1,4 +1,3 @@
-/*
 package com.vyshyvan.repositories.ordinary;
 
 import com.vyshyvan.model.Ordinary;
@@ -9,5 +8,3 @@ import org.springframework.stereotype.Repository;
 public interface OrdinaryDAO extends CrudRepository<Ordinary, Integer>{
 
 }
-
-*/

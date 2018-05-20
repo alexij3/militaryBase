@@ -1,19 +1,24 @@
-/*
 package com.vyshyvan.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 public class Officers implements Serializable{
     @Id
-    @OneToOne
-    @JoinColumn(name = "soldier_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "soldier_id", unique = true)
+    @NotNull
     private Soldier soldier;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "rang")
+    @NotNull
     private Rang rang;
 
     @Column(name = "academy_graduation")
@@ -63,5 +68,12 @@ public class Officers implements Serializable{
     public void setBecameGeneral(LocalDate becameGeneral) {
         this.becameGeneral = becameGeneral;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
-*/

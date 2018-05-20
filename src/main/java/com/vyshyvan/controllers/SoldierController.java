@@ -1,6 +1,8 @@
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.MilitaryBase;
+import com.vyshyvan.model.Ordinary;
+import com.vyshyvan.model.Rang;
 import com.vyshyvan.model.Soldier;
 import com.vyshyvan.services.militarybase.MilitaryBaseService;
 import com.vyshyvan.services.militarybase.MilitaryBaseServiceImpl;
@@ -28,13 +30,21 @@ public class SoldierController {
     }
 
     @RequestMapping("/create")
-    public Soldier create(@RequestBody Soldier soldier) {
-        soldier.setMilitaryBase(militaryBaseService.getMilitaryBase(soldier.getMilitaryBaseId()));
+    public Soldier create(@RequestParam("mbaseId") int mbaseId, @RequestBody Soldier soldier) {
+        MilitaryBase militaryBase = new MilitaryBase();
+        militaryBase.setId(mbaseId);
+        soldier.setMilitaryBase(militaryBase);
         return soldierService.insertSoldier(soldier);
     }
 
     @RequestMapping("/update")
-    public Soldier updateSoldier(@RequestParam("id") Integer id, @RequestBody Soldier soldier) {
+    public Soldier updateSoldier(@RequestParam("id") Integer id,
+                                 @RequestParam("mbaseId") int mbaseId,
+                                 @RequestBody Soldier soldier) {
+        MilitaryBase militaryBase = new MilitaryBase();
+        militaryBase.setId(mbaseId);
+
+        soldier.setMilitaryBase(militaryBase);
         soldier.setId(id);
         return soldierService.updateSoldier(soldier);
     }
@@ -52,15 +62,12 @@ public class SoldierController {
     @RequestMapping("/updatespecialties")
     public void updateSpecialties(@RequestParam("id") int id, @RequestBody Soldier soldier){
         soldier.setId(id);
-        soldier.setMilitaryBase(militaryBaseService.getMilitaryBase(soldier.getMilitaryBaseId()));
         soldierService.updateSpecialties(soldier);
     }
 
     @RequestMapping("/deletespecialties")
     public void deleteSpecialties(@RequestParam("soldierId") int id, @RequestBody Soldier soldier){
         soldier.setId(id);
-        soldier.setMilitaryBase(militaryBaseService.getMilitaryBase(soldier.getMilitaryBaseId()));
         soldierService.deleteSpecialties(soldier);
     }
-
 }

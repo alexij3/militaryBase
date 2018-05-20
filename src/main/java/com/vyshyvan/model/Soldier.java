@@ -19,9 +19,6 @@ public class Soldier {
     @JoinColumn(name = "military_base_id", nullable = false)
     private MilitaryBase militaryBase;
 
-    @Column(name = "military_base_id", insertable = false, updatable = false)
-    private int militaryBaseId;
-
     @ElementCollection(targetClass = Specialty.class)
     @CollectionTable(name = "soldier_specialty", joinColumns = @JoinColumn (name = "id_soldier", nullable = false))
     @Enumerated(EnumType.STRING)
@@ -29,14 +26,6 @@ public class Soldier {
     private Set<Specialty> specialty;
 
     public Soldier() {
-    }
-
-    public Soldier(String name, int age, MilitaryBase militaryBase, int militaryBaseId, Set<Specialty> specialty) {
-        this.name = name;
-        this.age = age;
-        this.militaryBase = militaryBase;
-        this.militaryBaseId = militaryBaseId;
-        this.specialty = specialty;
     }
 
     public Soldier(String name, int age, MilitaryBase militaryBase, Set<Specialty> specialty) {
@@ -95,13 +84,5 @@ public class Soldier {
 
     public void setSpecialty(Set<Specialty> specialty) {
         this.specialty = specialty;
-    }
-
-    public int getMilitaryBaseId() {
-        return militaryBaseId;
-    }
-
-    public void setMilitaryBaseId(int militaryBaseId) {
-        this.militaryBaseId = militaryBaseId;
     }
 }

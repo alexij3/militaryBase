@@ -1,8 +1,7 @@
-/*
 package com.vyshyvan.services.officers;
 
-import com.vyshyvan.dao.officers.OfficersDAOImpl;
 import com.vyshyvan.model.Officers;
+import com.vyshyvan.repositories.officers.OfficersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,31 +10,30 @@ import java.util.List;
 @Service
 public class OfficersServiceImpl implements OfficersService {
     @Autowired
-    OfficersDAOImpl officersDAO;
+    OfficersDAO officersDAO;
 
     @Override
     public Officers insertOfficers(Officers officers) {
-        return officersDAO.insertOfficers(officers);
+        return officersDAO.save(officers);
     }
 
     @Override
     public Officers getOfficers(int id) {
-        return officersDAO.getOfficers(id);
+        return officersDAO.findById(id).get();
     }
 
     @Override
     public Officers updateOfficers(Officers officers) {
-        return officersDAO.updateOfficers(officers);
+        return officersDAO.save(officers);
     }
 
     @Override
-    public Officers deleteOfficers(int id) {
-        return officersDAO.deleteOfficers(id);
+    public void deleteOfficers(int id) {
+        officersDAO.deleteById(id);
     }
 
     @Override
     public List<Officers> getAll() {
-        return officersDAO.getAll();
+        return (List<Officers>) officersDAO.findAll();
     }
 }
-*/

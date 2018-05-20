@@ -14,6 +14,7 @@ app.controller("SoldierCtrl", function($scope, $http){
          $http.get('/api/militarybase/showall').then(function(response){
              var militaryBases = response.data;
              var select = document.getElementById('selectMilitaryBases');
+             var selectMbaseUpd = document.getElementById('updateMilitaryBase');
 
              for (var i = 0; i < militaryBases.length; i++){
                  var option = document.createElement("option");
@@ -22,6 +23,14 @@ app.controller("SoldierCtrl", function($scope, $http){
 
                  select.add(option);
                  console.log(select);
+             }
+
+             for (var j = 0; j < militaryBases.length; j++){
+                 var option2 = document.createElement("option");
+                 option2.text = militaryBases[j].name;
+                 option2.value = militaryBases[j].id;
+
+                 selectMbaseUpd.add(option2);
              }
          });
     });
@@ -42,11 +51,10 @@ app.controller("SoldierCtrl", function($scope, $http){
 
         var createRequest = {
             method: 'PUT',
-            url: '/api/soldier/create',
+            url: '/api/soldier/create?mbaseId=' + militaryBaseId,
             data : {
                 name : name,
-                age : age,
-                militaryBaseId: militaryBaseId
+                age : age
             }
         };
 
@@ -59,18 +67,24 @@ app.controller("SoldierCtrl", function($scope, $http){
         });
     };
 
-    this.startUpdateSoldier = function startUpdateSoldier(id, name){
+    this.startUpdateSoldier = function startUpdateSoldier(id, name, age, militaryBaseId){
+        document.getElementById('updateMilitaryBase').value = militaryBaseId;
+        document.getElementById('updateSoldierAge').value = age;
         document.getElementById('updateSoldierName').value = name;
         idToUpdate = id;
     };
 
     this.updateSoldier = function updateSoldier(){
         var name = document.getElementById('updateSoldierName').value;
+        var age = document.getElementById('updateSoldierAge').value;
+        var militaryBaseId = document.getElementById('updateMilitaryBase').value;
+
         var request = {
             method: 'POST',
-            url : '/api/soldier/update?id=' + idToUpdate,
+            url : '/api/soldier/update?id=' + idToUpdate + '&mbaseId=' + militaryBaseId,
             data: {
-                name : name
+                name : name,
+                age : age
             }
         };
 

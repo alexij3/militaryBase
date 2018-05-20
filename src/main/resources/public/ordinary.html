@@ -2,52 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Рядовий склад</title>
+    <title>Рядовий і сержантський склад</title>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+
 
 </head>
 <body ng-app = "demo">
-<div class="container" style="margin-top: 30px" ng-controller = "AppCtrl as ctrl" >
-    <div class="row">
-        <div class="col-md12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Рядовий склад</div>
-                <div class="panel-body">
+Рядовий і сержантський склад
+<div class="container-fluid" ng-controller = "OrdinaryCtrl as ordinaryCtrl">
+    <div class="datagrid">
+        <table>
+            <thead>
+            <tr>
+                <th>Солдат</th>
+                <th>Ранг</th>
+                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                                         ng-click="contestInPalaceCtrl.startCreateOrdinary()">Створити</button></th>
+            </tr>
+            </thead>
 
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
+            <tbody>
 
-                            <th>&#128273ID</th>
-                            <th>Солдат</th>
-                            <th>Ранг</th>
+            <tr ng-repeat = "item in ordinary">
+                <td>{{item.soldier.name}}</td>
+                <td>{{item.rang}}</td>
+                <td>
+                    <button id="update" ng-click="ordinaryCtrl.startUpdate(item.id, item.soldier.id, item.rang)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="ordinaryCtrl.del(item.id)" class="btn-danger">Видалити</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-                        </tr>
-                        </thead>
-
-                        <tbody>
-
-                        <tr ng-repeat = "item in ordinaries">
-                            <td>{{item.soldier.id}}</td>
-                            <td>{{item.soldier.name}}</td>
-                            <td>{{item.rang}}</td>
-                        </tr>
-
-                        </tbody>
-
-
-                    </table>
-
+    <!-- Додавання до рядового складу -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Солдат: </label> <br>
+                    <select id="selectSoldier"></select> <br>
+                    <label>Ранг: </label> <br>
+                    <select id="selectRang">
+                        <option>Старшина</option>
+                        <option>Сержант</option>
+                        <option>Прапорщик</option>
+                        <option>Єфрейтор</option>
+                        <option>Рядовий</option>
+                    </select> <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="createOrdinary" ng-click="ordinaryCtrl.createOrdinary()">Створити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
+
         </div>
     </div>
 
+    <!-- Редагування рядового складу -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Солдат: </label> <br>
+                    <select id="updSelectSoldier"></select> <br>
+                    <label>Ранг: </label> <br>
+                    <select id="updSelectRang">
+                        <option>Старшина</option>
+                        <option>Сержант</option>
+                        <option>Прапорщик</option>
+                        <option>Єфрейтор</option>
+                        <option>Рядовий</option>
+                    </select> <br>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="updateOrdinaryButton" ng-click="ordinaryCtrl.update()">Змінити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </div>
 
-
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/ordinary.js"></script>
+
 </body>
 </html>
