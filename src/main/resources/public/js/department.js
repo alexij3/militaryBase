@@ -68,11 +68,9 @@ app.controller("DepartmentCtrl", function($scope, $http){
         var platoonId = document.getElementById('selectPlatoon').value;
         var captainId = document.getElementById('selectCaptain').value;
 
-        window.alert(divisionId);
-
         var request = {
             method: 'PUT',
-            url: '/api/militarybase/create?platoonId=' + platoonId + '&captainId=' + captainId,
+            url: '/api/department/insert?platoonId=' + platoonId + '&captainId=' + captainId,
             data : {
                 name : name,
                 codeNumber : codeNumber
@@ -89,7 +87,7 @@ app.controller("DepartmentCtrl", function($scope, $http){
         window.location.reload();
     };
 
-    this.startUpdate = function startUpdate(idToUpdate, code, name, platoonId, captainId){
+    this.startUpdate = function startUpdate(idToUpdate, name, code, platoonId, captainId){
         id = idToUpdate;
         document.getElementById('updDepartmentName').value = name;
         document.getElementById('updDepartmentCode').value = code;
