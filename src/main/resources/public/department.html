@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Корпуси</title>
+    <title>Відділення</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
@@ -11,8 +11,8 @@
 
 </head>
 <body ng-app = "demo">
-Корпуси
-<div class="container" style="margin-top: 30px" ng-controller = "DepartmentCtrl as departmentCtrl">
+Відділення
+<div class="container-fluid" ng-controller = "DepartmentCtrl as departmentCtrl">
     <div class="datagrid">
         <table>
             <thead>
@@ -27,21 +27,21 @@
 
             <tbody>
 
-            <tr ng-repeat = "item in department">
+            <tr ng-repeat = "item in departments">
                 <td>{{item.codeNumber}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.platoon.name}}</td>
                 <td>{{item.captain.name}}</td>
                 <td>
-                    <button id="update" ng-click="departmentCtrl.startUpdateDepartment(item.id, item.name, item.codeNumber, item.platoon.id, item.captain.id)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="departmentCtrl.deleteDepartment(item.id)" class="btn-danger">Видалити</button>
+                    <button id="update" ng-click="departmentCtrl.startUpdate(item.id, item.name, item.codeNumber, item.platoon.id, item.captain.id)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="departmentCtrl.del(item.id)" class="btn-danger">Видалити</button>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Додавання армії -->
+    <!-- Додавання відділення -->
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -51,11 +51,14 @@
                 </div>
                 <div class="modal-body">
                     <label>Кодовий номер:</label>
-                    <input type="text" id="departmentCode" name="departmentCode" /> <br>
+                    <input type="text" id="departmentCode" /> <br>
                     <label>Назва:</label>
-                    <input type="text" id="departmentName" name="departmentName" />
+                    <input type="text" id="departmentName" /><br>
                     <label>Взвод:
-                        <select id="selectPlatoon"
+                        <select id="selectPlatoon"></select>
+                    </label><br>
+                    <label>Капітан:
+                        <select id="selectCaptain"></select>
                     </label>
 
                 </div>
@@ -68,7 +71,7 @@
         </div>
     </div>
 
-    <!-- Редагування армії -->
+    <!-- Редагування відділення -->
     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -78,12 +81,19 @@
                 </div>
                 <div class="modal-body">
                     <label>Кодовий номер:</label>
-                    <input type="text" id="updateDepartmentCode" name="updateDepartmentCode" /> <br>
+                    <input type="text" id="updDepartmentCode" /> <br>
                     <label>Назва:</label>
-                    <input type="text" id="updateDepartmentName" name="updateDepartmentName" />
-                    <button id="editDepartmentButton" ng-click="departmentCtrl.updateDepartment()">Змінити</button>
+                    <input type="text" id="updDepartmentName" /><br>
+                    <label>Взвод:
+                        <select id="updSelectPlatoon"></select>
+                    </label><br>
+                    <label>Капітан:
+                        <select id="updSelectCaptain"></select>
+                    </label>
+
                 </div>
                 <div class="modal-footer">
+                    <button id="editDepartmentButton" class="btn btn-default" ng-click="departmentCtrl.update()">Змінити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

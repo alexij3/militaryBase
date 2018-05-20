@@ -1,6 +1,7 @@
 package com.vyshyvan.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -10,17 +11,21 @@ public class Department {
     private Integer id;
 
     @Column(name = "code_number")
+    @NotNull
     private String codeNumber;
 
     @Column
+    @NotNull
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "platoon_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "platoon_id")
+    @NotNull
     private Platoon platoon;
 
     @OneToOne
-    @JoinColumn(name = "captain_id", nullable = false)
+    @JoinColumn(name = "captain_id")
+    @NotNull
     private Soldier captain;
 
     public Department() {

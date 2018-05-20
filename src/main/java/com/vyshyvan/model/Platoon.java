@@ -1,6 +1,7 @@
 package com.vyshyvan.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Platoon {
@@ -15,11 +16,9 @@ public class Platoon {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "squadron_id", nullable = false)
+    @JoinColumn(name = "squadron_id")
+    @NotNull
     private Squadron squadron;
-
-    @Column(name = "squadron_id", nullable = false, insertable = false, updatable = false)
-    private int squadronId;
 
     public Platoon() {
     }
@@ -28,13 +27,6 @@ public class Platoon {
         this.codeNumber = codeNumber;
         this.name = name;
         this.squadron = squadron;
-    }
-
-    public Platoon(String codeNumber, String name, Squadron squadron, int squadronId) {
-        this.codeNumber = codeNumber;
-        this.name = name;
-        this.squadron = squadron;
-        this.squadronId = squadronId;
     }
 
     public Integer getId() {
@@ -67,13 +59,5 @@ public class Platoon {
 
     public void setSquadron(Squadron squadron) {
         this.squadron = squadron;
-    }
-
-    public int getSquadronId() {
-        return squadronId;
-    }
-
-    public void setSquadronId(int squadronId) {
-        this.squadronId = squadronId;
     }
 }

@@ -8,6 +8,6 @@ public interface DepartmentService {
     Department insertDepartment(Department department);
     Department getDepartment(int id);
     Department updateDepartment(Department department);
-    Department deleteDepartment(int id);
+    void deleteDepartment(int id);
     List<Department> getAll();
 }

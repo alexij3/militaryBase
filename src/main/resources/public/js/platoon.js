@@ -62,11 +62,10 @@ app.controller("PlatoonCtrl", function($scope, $http){
 
         var request = {
             method: 'PUT',
-            url: '/api/platoon/create',
+            url: '/api/platoon/create?squadronId=' + squadronId,
             data: {
                 name : name,
-                codeNumber: code,
-                squadronId: squadronId
+                codeNumber: code
             }
         };
 
@@ -82,9 +81,9 @@ app.controller("PlatoonCtrl", function($scope, $http){
 
     this.startUpdatePlatoon = function startUpdatePlatoon(id, name, code, squadronId) {
         idToUpdate = id;
-            document.getElementById('updatePlatoonName').value = name;
-            document.getElementById('updatePlatoonCode').value = code;
-            document.getElementById('updateSelectSquadron').value = squadronId;
+        document.getElementById('updatePlatoonName').value = name;
+        document.getElementById('updatePlatoonCode').value = code;
+        document.getElementById('updateSelectSquadron').value = squadronId;
 
     };
 
@@ -95,11 +94,10 @@ app.controller("PlatoonCtrl", function($scope, $http){
 
         var request = {
             method: 'POST',
-            url : '/api/platoon/update?id=' + idToUpdate,
+            url : '/api/platoon/update?squadronId=' + squadronId + '&id=' + idToUpdate,
             data: {
                 name : name,
-                codeNumber : code,
-                squadronId : squadronId
+                codeNumber : code
             }
         };
 

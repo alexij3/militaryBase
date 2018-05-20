@@ -1,6 +1,7 @@
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.Platoon;
+import com.vyshyvan.model.Squadron;
 import com.vyshyvan.services.platoon.PlatoonServiceImpl;
 import com.vyshyvan.services.squadron.SquadronServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +27,21 @@ public class PlatoonController {
     }
 
     @RequestMapping("/create")
-    public Platoon create(@RequestBody Platoon platoon) {
-        platoon.setSquadron(squadronService.getSquadron(platoon.getSquadronId()));
+    public Platoon create(@RequestParam("squadronId") int squadronId, @RequestBody Platoon platoon) {
+        Squadron squadron = new Squadron();
+        squadron.setId(squadronId);
+        platoon.setSquadron(squadron);
         return platoonService.insertPlatoon(platoon);
     }
 
     @RequestMapping("/update")
-    public Platoon updatePlatoon(@RequestParam("id") Integer id, @RequestBody Platoon platoon) {
+    public Platoon updatePlatoon(@RequestParam("squadronId") Integer squadronId, @RequestParam("id") Integer id, @RequestBody Platoon platoon) {
         platoon.setId(id);
-        platoon.setSquadron(squadronService.getSquadron(platoon.getSquadronId()));
+        Squadron squadron = new Squadron();
+        if (squadronId != null){
+            squadron.setId(squadronId);
+            platoon.setSquadron(squadron);
+        }
         return platoonService.updatePlatoon(platoon);
     }
 
