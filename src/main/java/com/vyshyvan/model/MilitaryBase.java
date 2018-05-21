@@ -1,5 +1,6 @@
 package com.vyshyvan.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class MilitaryBase {
 
     @ManyToOne
     @JoinColumn(name="army_id")
+    @NotNull
     private Army army;
 
     @ManyToOne
@@ -33,10 +35,10 @@ public class MilitaryBase {
     @JoinColumn(name = "brigade_id")
     private Brigade brigade;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="military_base_dislocation", joinColumns = @JoinColumn(name = "military_base_id", referencedColumnName = "id", nullable = false),
-                                                                inverseJoinColumns = @JoinColumn(name="dislocation", referencedColumnName = "id", nullable = false))
-    private Set<Buildings> dislocation = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name="dislocation")
+    @NotNull
+    private Buildings dislocation;
 
     @OneToOne
     @JoinColumn(name = "captain_id")
@@ -67,9 +69,8 @@ public class MilitaryBase {
         this.captain = captain;
     }
 
-    public MilitaryBase(String name, Set<Buildings> dislocation, Soldier captain, Set<TransportInMilitaryBase> transportInMilitaryBase, Set<WeaponryInMilitaryBase> weaponryInMilitaryBase) {
+    public MilitaryBase(String name, Soldier captain, Set<TransportInMilitaryBase> transportInMilitaryBase, Set<WeaponryInMilitaryBase> weaponryInMilitaryBase) {
         this.name = name;
-        this.dislocation = dislocation;
         this.captain = captain;
         this.transportInMilitaryBase = transportInMilitaryBase;
         this.weaponryInMilitaryBase = weaponryInMilitaryBase;
@@ -81,7 +82,6 @@ public class MilitaryBase {
         this.division = division;
         this.corps = corps;
         this.brigade = brigade;
-        this.dislocation = dislocation;
         this.captain = captain;
         this.transportInMilitaryBase = transportInMilitaryBase;
         this.weaponryInMilitaryBase = weaponryInMilitaryBase;
@@ -136,11 +136,11 @@ public class MilitaryBase {
         this.brigade = brigade;
     }
 
-    public Set<Buildings> getDislocation() {
+    public Buildings getDislocation() {
         return dislocation;
     }
 
-    public void setDislocation(Set<Buildings> dislocation) {
+    public void setDislocation(Buildings dislocation) {
         this.dislocation = dislocation;
     }
 

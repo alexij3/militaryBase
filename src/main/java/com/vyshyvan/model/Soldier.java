@@ -1,5 +1,8 @@
 package com.vyshyvan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,7 +20,11 @@ public class Soldier {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "military_base_id", nullable = false)
+    @JsonIgnore
     private MilitaryBase militaryBase;
+
+    @Transient
+    private String militaryBaseName;
 
     @ElementCollection(targetClass = Specialty.class)
     @CollectionTable(name = "soldier_specialty", joinColumns = @JoinColumn (name = "id_soldier", nullable = false))
@@ -32,6 +39,7 @@ public class Soldier {
         this.name = name;
         this.age = age;
         this.militaryBase = militaryBase;
+        this.militaryBaseName = militaryBase.getName();
         this.specialty = specialty;
     }
 
@@ -44,6 +52,7 @@ public class Soldier {
         this.name = name;
         this.age = age;
         this.militaryBase = militaryBase;
+        this.militaryBaseName = militaryBase.getName();
     }
 
     public Integer getId() {
@@ -76,6 +85,7 @@ public class Soldier {
 
     public void setMilitaryBase(MilitaryBase militaryBase) {
         this.militaryBase = militaryBase;
+        this.militaryBaseName = militaryBase.getName();
     }
 
     public Set<Specialty> getSpecialty() {
@@ -84,5 +94,13 @@ public class Soldier {
 
     public void setSpecialty(Set<Specialty> specialty) {
         this.specialty = specialty;
+    }
+
+    public String getMilitaryBaseName() {
+        return militaryBaseName;
+    }
+
+    public void setMilitaryBaseName(String militaryBaseName) {
+        this.militaryBaseName = militaryBaseName;
     }
 }

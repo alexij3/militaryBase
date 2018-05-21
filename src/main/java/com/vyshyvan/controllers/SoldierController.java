@@ -44,8 +44,10 @@ public class SoldierController {
         MilitaryBase militaryBase = new MilitaryBase();
         militaryBase.setId(mbaseId);
 
-        soldier.setMilitaryBase(militaryBase);
         soldier.setId(id);
+        soldier.setMilitaryBase(militaryBase);
+
+
         return soldierService.updateSoldier(soldier);
     }
 

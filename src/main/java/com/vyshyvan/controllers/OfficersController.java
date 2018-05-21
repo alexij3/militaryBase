@@ -37,14 +37,20 @@ public class OfficersController {
     public Officers update(@RequestParam("id") int id,
                            @RequestParam("soldierId") int soldierId,
                            @RequestBody Officers officers){
-        officers.setId(id);
+        Officers officers1 = new Officers();
+        officers1.setId(id);
+        officers1.setRang(officers.getRang());
+        officers1.setAcademyGraduation(officers.getAcademyGraduation());
+        officers1.setBecameGeneral(officers.getBecameGeneral());
+
 
         Soldier soldier = new Soldier();
         soldier.setId(soldierId);
 
-        officers.setSoldier(soldier);
+        officers1.setSoldier(soldier);
 
-        return officersService.updateOfficers(officers);
+
+        return officersService.updateOfficers(officers1);
     }
 
     @RequestMapping("/delete")

@@ -26,22 +26,90 @@ public class MilitaryBaseController {
     }
 
     @RequestMapping("/create")
-    public MilitaryBase create(int armyId, int divisionId, int corpsId, int brigadeId, int captainId){
+    public MilitaryBase create(int armyId, int divisionId, int corpsId, int brigadeId, int captainId, int dislocationId,
+                               @RequestBody MilitaryBase militaryBaseInput){
         Army army = new Army();
-        Division division = new Division();
-        Corps corps = new Corps();
-        Brigade brigade = new Brigade();
-        Soldier soldier = new Soldier();
+        Buildings buildings = new Buildings();
+        Division division;
+        Corps corps;
+        Brigade brigade;
+        Soldier soldier;
+
+        MilitaryBase militaryBase = new MilitaryBase();
 
         army.setId(armyId);
-        /*division.setId(divisionId);
-        corps.setId(corpsId);
-        brigade.setId(brigadeId);
-        soldier.setId(captainId);*/
+        buildings.setId(dislocationId);
 
-        MilitaryBase militaryBase = new MilitaryBase("somename", army, null, null, null, null);
+        if (divisionId != 0){
+            division = new Division();
+            division.setId(divisionId);
+            militaryBase.setDivision(division);
+        }else if (corpsId != 0) {
+            corps = new Corps();
+            corps.setId(corpsId);
+            militaryBase.setCorps(corps);
+        }else if (brigadeId != 0){
+            brigade = new Brigade();
+            brigade.setId(brigadeId);
+            militaryBase.setBrigade(brigade);
+        }
+
+        if (captainId != 0){
+            soldier = new Soldier();
+            soldier.setId(captainId);
+            militaryBase.setCaptain(soldier);
+        }
+
+        militaryBase.setName(militaryBaseInput.getName());
+        militaryBase.setArmy(army);
+        militaryBase.setDislocation(buildings);
+
 
         return militaryBaseService.insertMilitaryBase(militaryBase);
+    }
+
+    @RequestMapping("/update")
+    public MilitaryBase update(int id, int armyId, int divisionId, int corpsId, int brigadeId, int captainId, int dislocationId,
+                               @RequestBody MilitaryBase militaryBaseInput){
+        Army army = new Army();
+        Buildings buildings = new Buildings();
+        Division division;
+        Corps corps;
+        Brigade brigade;
+        Soldier soldier;
+
+        MilitaryBase militaryBase = new MilitaryBase();
+        militaryBase.setId(id);
+
+        army.setId(armyId);
+        buildings.setId(dislocationId);
+
+        if (divisionId != 0){
+            division = new Division();
+            division.setId(divisionId);
+            militaryBase.setDivision(division);
+        }else if (corpsId != 0) {
+            corps = new Corps();
+            corps.setId(corpsId);
+            militaryBase.setCorps(corps);
+        }else if (brigadeId != 0){
+            brigade = new Brigade();
+            brigade.setId(brigadeId);
+            militaryBase.setBrigade(brigade);
+        }
+
+        if (captainId != 0){
+            soldier = new Soldier();
+            soldier.setId(captainId);
+            militaryBase.setCaptain(soldier);
+        }
+
+        militaryBase.setName(militaryBaseInput.getName());
+        militaryBase.setArmy(army);
+        militaryBase.setDislocation(buildings);
+
+
+        return militaryBaseService.updateMilitaryBase(militaryBase);
     }
 
     @RequestMapping("/get")

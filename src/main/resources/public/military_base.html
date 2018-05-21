@@ -22,6 +22,7 @@
                 <th>Дивізія</th>
                 <th>Корпус</th>
                 <th>Бригада</th>
+                <th>Дизлокація</th>
                 <th>Капітан</th>
                 <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
             </tr>
@@ -36,10 +37,11 @@
                 <td>{{item.division.name}}</td>
                 <td>{{item.corps.name}}</td>
                 <td>{{item.brigade.name}}</td>
+                <td>{{item.dislocation.name}}</td>
                 <td>{{item.captain.name}}</td>
                 <td>
-                    <button id="update" ng-click="militaryBaseCtrl.startUpdateMilitaryBase(item.id, item.name, item.codeNumber)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="militaryBaseCtrl.deleteMilitaryBase(item.id)" class="btn-danger">Видалити</button>
+                    <button id="update" ng-click="militaryBaseCtrl.startUpdate(item.id, item.name, item.army.id, item.division.id, item.corps.id, item.brigade.id, item.dislocation.id, item.captain.id)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="militaryBaseCtrl.del(item.id)" class="btn-danger">Видалити</button>
                 </td>
             </tr>
             </tbody>
@@ -59,15 +61,22 @@
                     <input type="text" id="militaryBaseName" name="militaryBaseName" /></label><br>
                     <label>Армія:
                     <select id="selectArmy"></select></label><br>
-                    <label>Підрозділ:
+                    <!--<label>Підрозділ:
                     <select id="selectUnit" >
                         <optgroup label="Дивізії" id="selectDivision"></optgroup>
                         <optgroup label="Корпуси" id="selectCorps"></optgroup>
                         <optgroup label="Бригади" id="selectBrigade"></optgroup>
-                    </select></label><br>
+                    </select></label><br>-->
+                    <label>ПІДРОЗДІЛИ (виберіть один):<br>
+                        <select id="selectDivision"></select>&nbsp <input type="radio" name="unit" id="radioDivision"><br>
+                        <select id="selectCorps"></select>&nbsp <input type="radio" name="unit" id="radioCorps"><br>
+                        <select id="selectBrigade"></select>&nbsp <input type="radio" name="unit" id="radioBrigade"><br>
+                    </label><br>
+                    <label>Місце дизлокації:
+                        <select id="selectDislocation"></select>
+                    </label><br>
                     <label>Капітан:
                     <select id="selectCaptain" ></select></label><br>
-
                 </div>
                 <div class="modal-footer">
                     <button class = "btn btn-default" id="createMilitaryBaseButton" ng-click="militaryBaseCtrl.createMilitaryBase()">Створити</button>
@@ -87,13 +96,24 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Кодовий номер:</label>
-                    <input type="text" id="updateMilitaryBaseCode" name="updateMilitaryBaseCode" /> <br>
-                    <label>Назва:</label>
-                    <input type="text" id="updateMilitaryBaseName" name="updateMilitaryBaseName" />
-                    <button id="editMilitaryBaseButton" ng-click="militaryBaseCtrl.updateMilitaryBase()">Змінити</button>
+                    <label>Назва:
+                        <input type="text" id="updMilitaryBaseName" name="militaryBaseName" /></label><br>
+                    <label>Армія:
+                        <select id="updSelectArmy"></select></label><br>
+                    <label>ПІДРОЗДІЛИ (виберіть один):<br>
+                        <select id="updSelectDivision"></select>&nbsp <input type="radio" name="updUnit" id="updRadioDivision"><br>
+                        <select id="updSelectCorps"></select>&nbsp <input type="radio" name="updUnit" id="updRadioCorps"><br>
+                        <select id="updSelectBrigade"></select>&nbsp <input type="radio" name="updUnit" id="updRadioBrigade"><br>
+                    </label><br>
+                    <label>Місце дизлокації:
+                        <select id="updSelectDislocation"></select>
+                    </label><br>
+                    <label>Капітан:
+                        <select id="updSelectCaptain" ></select></label><br>
+
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="editMilitaryBaseButton" ng-click="militaryBaseCtrl.update()">Змінити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
