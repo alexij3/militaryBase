@@ -4,7 +4,10 @@ app.controller("OrdinaryCtrl", function($scope, $http){
     var id;
 
     $scope.ordinary = [];
+    var time = performance.now();
     $http.get('/api/ordinary/showall').then(function(response){
+        time = performance.now() - time;
+        window.alert("Виведення відбулося за " + time + " мс.");
         $scope.ordinary = response.data;
 
     });
@@ -45,7 +48,10 @@ app.controller("OrdinaryCtrl", function($scope, $http){
             url : '/api/ordinary/insert?soldierId=' + soldierId + '&rang=' + rang
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            window.alert("Створення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
@@ -67,14 +73,20 @@ app.controller("OrdinaryCtrl", function($scope, $http){
             url: '/api/ordinary/update?id=' + id + '&soldierId=' + soldierId + '&rang=' + rang
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            window.alert("Оновлення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
     };
 
     this.del = function del(ordinaryId){
+        var time = performance.now();
         $http.post('/api/ordinary/delete?id=' + ordinaryId).then(function(response){
+            time = performance.now() - time;
+            window.alert("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
     }

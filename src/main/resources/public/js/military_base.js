@@ -4,8 +4,11 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
     var idToUpdate;
 
     $scope.militaryBase = [];
+    var time = performance.now();
     $http.get('/api/militarybase/showall').then(function(response){
         $scope.militaryBase = response.data;
+        time = performance.now() - time;
+        window.alert("Виведення відбулося за " + time + " мс.");
         $http.get('/api/soldier/showall').then(function(response) {
             console.log(response);
             var captain = response.data;

@@ -7,7 +7,7 @@ app.controller("BrigadeCtrl", function($scope, $http){
     $scope.brigades = [];
      $http.get('/api/brigade/showall').then(function (response){
          time = performance.now() - time;
-         console.log("Виведення відбулося за " + time + " мс.");
+         window.alert("Виведення відбулося за " + time + " мс.");
         $scope.brigades=response.data;
         console.log(response);
     });
@@ -16,7 +16,7 @@ app.controller("BrigadeCtrl", function($scope, $http){
         var time = performance.now();
         $http.get('/api/brigade/delete?id=' + id).then(function(){
             time = performance.now() - time;
-            console.log("Видалення відбулося за " + time + " мс.");
+            window.alert("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
     };
@@ -36,7 +36,7 @@ app.controller("BrigadeCtrl", function($scope, $http){
         var time = performance.now();
         $http(createRequest).then(function(response){
             time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
+            window.alert("Створення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
@@ -63,7 +63,7 @@ app.controller("BrigadeCtrl", function($scope, $http){
         var time = performance.now();
         $http(request).then(function (response){
             time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
+            window.alert("Оновлення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });

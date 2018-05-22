@@ -4,8 +4,11 @@ app.controller("WeaponryInMbaseCtrl", function($scope, $http){
     var id;
 
     $scope.weaponry = [];
+    var time = performance.now();
     $http.get('/api/weaponryinmbase/showall').then(function(response){
         $scope.weaponry = response.data;
+        time = performance.now() - time;
+        window.alert("Виведення відбулося за " + time + " мс.");
         var bases = [];
         $http.get('/api/militarybase/showall').then(function(response){
             bases = response.data;
@@ -74,7 +77,10 @@ app.controller("WeaponryInMbaseCtrl", function($scope, $http){
             url : '/api/weaponryinmbase/insert?mbaseId=' + militaryBaseId + '&weaponryId=' + weaponryId + '&amount=' + amount
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            window.alert("Створення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
@@ -98,14 +104,20 @@ app.controller("WeaponryInMbaseCtrl", function($scope, $http){
                                                     + '&amount=' + amount
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            window.alert("Оновлення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
     };
 
     this.del = function del(weaponryInMbaseId){
+        var time = performance.now();
         $http.post('/api/weaponryinmbase/delete?id=' + weaponryInMbaseId).then(function(response){
+            time = performance.now() - time;
+            window.alert("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
     }

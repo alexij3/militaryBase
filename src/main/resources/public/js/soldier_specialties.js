@@ -9,7 +9,10 @@ app.controller("SoldierSpecialtiesCtrl", function($scope, $http) {
     var specialties = [];
 
     $scope.soldiers = [];
+    var time = performance.now();
     $http.get('/api/soldier/showall').then(function (response) {
+        time = performance.now() - time;
+        window.alert("Виведення відбулося за " + time + " мс.");
         $scope.soldiers = response.data;
     });
 
@@ -26,7 +29,10 @@ app.controller("SoldierSpecialtiesCtrl", function($scope, $http) {
             }
         };
 
+        var time = performance.now();
         $http(request).then(function(){
+            time = performance.now() - time;
+            window.alert("Створення відбулося за " + time + " мс.");
             window.location.reload();
         });
     };
@@ -73,7 +79,10 @@ app.controller("SoldierSpecialtiesCtrl", function($scope, $http) {
             }
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            window.alert("Видалення відбулося за " + time + " мс.");
             document.getElementById('delSelectSpecialties').options.length = 0;
             window.location.reload();
         });

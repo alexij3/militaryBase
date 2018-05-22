@@ -35,7 +35,7 @@ app.controller("PlatoonCtrl", function($scope, $http){
     $scope.platoon = [];
      $http.get('/api/platoon/showall').then(function (response){
          time = performance.now() - time;
-         console.log("Виведення відбулося за " + time + " мс.");
+         window.alert("Виведення відбулося за " + time + " мс.");
         $scope.platoon=response.data;
         console.log(response);
     });
@@ -44,7 +44,7 @@ app.controller("PlatoonCtrl", function($scope, $http){
         var time = performance.now();
         $http.get('/api/platoon/delete?id=' + id).then(function(response){
             time = performance.now() - time;
-            console.log("Видалення відбулося за " + time + " мс.");
+            window.alert("Видалення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
 
@@ -72,7 +72,7 @@ app.controller("PlatoonCtrl", function($scope, $http){
         var time = performance.now();
         $http(request).then(function(response){
             time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
+            window.alert("Створення відбулося за " + time + " мс.");
             console.log(response);
         });
 
@@ -104,7 +104,7 @@ app.controller("PlatoonCtrl", function($scope, $http){
         var time = performance.now();
         $http(request).then(function (response){
             time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
+            window.alert("Оновлення відбулося за " + time + " мс.");
             console.log(response);
         });
 

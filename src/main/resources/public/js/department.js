@@ -4,8 +4,11 @@ app.controller("DepartmentCtrl", function($scope, $http){
     var id;
 
     $scope.departments = [];
+    var time = performance.now();
     $http.get('/api/department/showall').then(function(response){
         $scope.departments = response.data;
+        time = performance.now() - time;
+        window.alert("Виведення відбулося за " + time + " мс.");
         $http.get('/api/soldier/showall').then(function(response) {
             console.log(response);
             var captain = response.data;
@@ -80,7 +83,7 @@ app.controller("DepartmentCtrl", function($scope, $http){
         var time = performance.now();
         $http(request).then(function(response){
             time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
+            window.alert("Створення відбулося за " + time + " мс.");
             console.log(response);
         });
 

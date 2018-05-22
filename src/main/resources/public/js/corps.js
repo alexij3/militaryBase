@@ -7,7 +7,7 @@ app.controller("CorpsCtrl", function($scope, $http){
     $scope.corps = [];
      $http.get('/api/corps/showall').then(function (response){
          time = performance.now() - time;
-         console.log("Виведення відбулося за " + time + " мс.");
+         window.alert("Виведення відбулося за " + time + " мс.");
         $scope.corps=response.data;
         console.log(response);
     });
@@ -16,7 +16,7 @@ app.controller("CorpsCtrl", function($scope, $http){
         var time = performance.now();
         $http.get('/api/corps/delete?id=' + id).then(function(){
             time = performance.now() - time;
-            console.log("Видалення відбулося за " + time + " мс.");
+            window.alert("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
     };
@@ -36,7 +36,7 @@ app.controller("CorpsCtrl", function($scope, $http){
         var time = performance.now();
         $http(createRequest).then(function(response){
             time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
+            window.alert("Створення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
@@ -63,7 +63,7 @@ app.controller("CorpsCtrl", function($scope, $http){
         var time = performance.now();
         $http(request).then(function (response){
             time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
+            window.alert("Оновлення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
