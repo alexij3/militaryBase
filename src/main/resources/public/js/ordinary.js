@@ -2,6 +2,9 @@ var app = angular.module("demo", []);
 
 app.controller("OrdinaryCtrl", function($scope, $http){
     var id;
+    var militaryBaseId;
+    var soldierName;
+    var soldierAge;
 
     $scope.ordinary = [];
     var time = performance.now();
@@ -36,6 +39,48 @@ app.controller("OrdinaryCtrl", function($scope, $http){
             selectSoldierUpd.add(option2);
 
             console.log(selectSoldierUpd);
+        }
+    });
+
+    $http.get('/api/militarybase/showall').then(function(response){
+        var militaryBases = response.data;
+        var select = document.getElementById('rangBaseQueryBase');
+
+        for (var i = 0; i < militaryBases.length; i++){
+            var option = document.createElement("option");
+            option.text = militaryBases[i].name;
+            option.value = militaryBases[i].id;
+
+            select.add(option);
+            console.log(select);
+        }
+    });
+
+    $http.get('/api/division/showall').then(function(response){
+        var divisions = response.data;
+        var select = document.getElementById('rangDivisionQueryDivision');
+
+        for (var i = 0; i < divisions.length; i++){
+            var option = document.createElement("option");
+            option.text = divisions[i].name;
+            option.value = divisions[i].id;
+
+            select.add(option);
+            console.log(select);
+        }
+    });
+
+    $http.get('/api/army/showall').then(function(response){
+        var armys = response.data;
+        var select = document.getElementById('rangArmyQueryArmy');
+
+        for (var i = 0; i < armys.length; i++){
+            var option = document.createElement("option");
+            option.text = armys[i].name;
+            option.value = armys[i].id;
+
+            select.add(option);
+            console.log(select);
         }
     });
 
@@ -89,6 +134,49 @@ app.controller("OrdinaryCtrl", function($scope, $http){
             window.alert("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
+    };
+
+    /**
+     * QUERY
+     */
+
+    this.findByRang = function findByRang(){
+        var rang = $('#selectRangQuery').val();
+
+        $http.get('/api/ordinary/findAllByRang?rang=' + rang).then(function(response){
+            $scope.ordinary = response.data;
+        });
+
+    };
+
+    this.findByRangAndMilitaryBaseId = function findByRangAndMilitaryBaseId(){
+        var rang = $('#rangBaseQueryRang').val();
+        var id = $('#rangBaseQueryBase').val();
+
+        $http.get('/api/ordinary/findAllByRangAndMilitaryBaseId?rang=' + rang + '&id=' + id).then(function(response){
+            $scope.ordinary = response.data;
+        });
+
+    };
+
+    this.findAllByRangAndDivisionId = function findAllByRangAndDivisionId(){
+        var rang = $('#rangDivisionQueryRang').val();
+        var id = $('#rangDivisionQueryDivision').val();
+
+        $http.get('/api/ordinary/findAllByRangAndDivisionId?rang=' + rang + '&id=' + id).then(function(response){
+            $scope.ordinary = response.data;
+        });
+
+    };
+
+    this.findAllByRangAndArmyId = function findAllByRangAndArmyId(){
+        var rang = $('#rangArmyQueryRang').val();
+        var id = $('#rangArmyQueryArmy').val();
+
+        $http.get('/api/ordinary/findAllByRangAndArmyId?rang=' + rang + '&id=' + id).then(function(response){
+            $scope.ordinary = response.data;
+        });
+
     }
 });
 

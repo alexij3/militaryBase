@@ -20,5 +20,7 @@ public interface MilitaryBaseDAO extends JpaRepository<MilitaryBase, Integer> {
 
     @Query("SELECT a FROM MilitaryBase a WHERE a.corps.id = :id")
     List<MilitaryBase> findAllByCorpsId(@Param("id") int id);
+
+
 }
 

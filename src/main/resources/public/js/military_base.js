@@ -7,7 +7,23 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
     var time = performance.now();
     $http.get('/api/militarybase/showall').then(function(response){
         $scope.militaryBase = response.data;
+        var local = [];
+        local = $scope.militaryBase;
+
+        var selectBase = document.getElementById('selectBaseQuery');
+
+
+        for (var p = 0; p < local.length; p++){
+            var option4 = document.createElement("option");
+            option4.text = local[p].name;
+            option4.value = local[p].id;
+
+            selectBase.add(option4);
+            console.log(selectBase);
+        }
+
         time = performance.now() - time;
+
         window.alert("Виведення відбулося за " + time + " мс.");
         $http.get('/api/soldier/showall').then(function(response) {
             console.log(response);
@@ -43,6 +59,7 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
         var selectArmyUpd = document.getElementById('updSelectArmy');
         var selectArmyQuery = document.getElementById('selectArmyQuery');
 
+
         for (var i = 0; i < armies.length; i++) {
             var option = document.createElement("option");
             option.text = armies[i].name;
@@ -70,7 +87,6 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
             selectArmyQuery.add(option3);
             console.log(selectArmyQuery);
         }
-
 
     });
 
@@ -338,6 +354,14 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
             var id = $('#selectCorpsQuery').val();
 
             $http.get('/api/militarybase/findAllByCorpsId?id=' + id).then(function (response){
+                $scope.militaryBase = response.data;
+            });
+        };
+
+        this.findDislocationsById = function findDislocationsById(){
+            var id = $('#selectBaseQuery').val();
+
+            $http.get('/api/militarybase/get?id=' + id).then(function(response){
                 $scope.militaryBase = response.data;
             });
         }

@@ -19,6 +19,7 @@
             <a href="" data-toggle="modal" data-target="#selectByArmyModal">Список військових частин вказаної армії</a>
             <a href="" data-toggle="modal" data-target="#selectByDivisionModal">Список військових частин вказаної дивізії</a>
             <a href="" data-toggle="modal" data-target="#selectByCorpsModal">Список військових частин вказаної корпусу</a>
+            <a href="" data-toggle="modal" data-target="#selectDislocationByIdModal">Список місць дизлокації для частини</a>
         </div>
     </div>
     </div>
@@ -26,7 +27,6 @@
         <table>
             <thead>
             <tr>
-                <th>&#128273ІД</th>
                 <th>Назва</th>
                 <th>Армія</th>
                 <th>Дивізія</th>
@@ -41,7 +41,6 @@
             <tbody>
 
             <tr ng-repeat = "item in militaryBase">
-                <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.army.name}}</td>
                 <td>{{item.division.name}}</td>
@@ -186,6 +185,26 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="selectCorpsQueryBtn" ng-click="militaryBaseCtrl.findByCorpsId()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="selectDislocationByIdModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір частини</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectBaseQuery" name="Військові частини" title="Військова частина"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectDislocationByIdModalBtn" ng-click="militaryBaseCtrl.findDislocationsById()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

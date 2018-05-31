@@ -51,4 +51,27 @@ public class OrdinaryController {
     public void delete(@RequestParam("id") int id){
         ordinaryService.deleteOrdinary(id);
     }
+
+    @RequestMapping("/findAllByRang")
+    public List<Ordinary> findAllByRang(@RequestParam("rang") Rang rang){
+        return ordinaryService.findAllByRang(rang);
+    }
+
+    @RequestMapping("/findAllByRangAndMilitaryBaseId")
+    public List<Ordinary> findAllByRangAndMilitaryBaseId(@RequestParam("rang") Rang rang, @RequestParam("id") int id){
+        System.out.println(id);
+        return ordinaryService.findAllByRangAndSoldierMilitaryBase_Id(rang, id);
+    }
+
+    @RequestMapping("/findAllByRangAndDivisionId")
+    public List<Ordinary> findAllByRangAndDivisionId(@RequestParam("rang") Rang rang, @RequestParam("id") int id){
+        System.out.println(id);
+        return ordinaryService.findAllByRangAndDivisionId(rang, id);
+    }
+
+    @RequestMapping("/findAllByRangAndArmyId")
+    public List<Ordinary> findAllByRangAndArmyId(@RequestParam("rang") Rang rang, @RequestParam("id") int id){
+        System.out.println(id);
+        return ordinaryService.findAllByRangAndArmyId(rang, id);
+    }
 }

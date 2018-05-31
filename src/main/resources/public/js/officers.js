@@ -58,6 +58,20 @@ app.controller("OfficersCtrl", function($scope, $http){
         }
     });
 
+    $http.get('/api/division/showall').then(function(response){
+        var divisions = response.data;
+        var select = document.getElementById('rangDivisionQueryDivision');
+
+        for (var i = 0; i < divisions.length; i++){
+            var option = document.createElement("option");
+            option.text = divisions[i].name;
+            option.value = divisions[i].id;
+
+            select.add(option);
+            console.log(select);
+        }
+    });
+
     $http.get('/api/army/showall').then(function(response){
         var armys = response.data;
         var select = document.getElementById('rangArmyQueryArmy');
@@ -71,7 +85,6 @@ app.controller("OfficersCtrl", function($scope, $http){
             console.log(select);
         }
     });
-
 
 
 
