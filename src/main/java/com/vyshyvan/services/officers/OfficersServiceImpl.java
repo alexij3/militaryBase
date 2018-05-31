@@ -42,4 +42,19 @@ public class OfficersServiceImpl implements OfficersService {
     public List<Officers> findAllByRang(Rang rang) {
         return officersDAO.findAllByRang(rang);
     }
+
+    @Override
+    public List<Officers> findAllByRangAndSoldierMilitaryBase_Id(Rang rang, int id) {
+        return officersDAO.findAllByRangAndSoldierMilitaryBase_Id(rang, id);
+    }
+
+    @Override
+    public List<Officers> findAllByRangAndDivisionId(Rang rang, int id) {
+        return officersDAO.findAllByRangAndDivisionId(rang, id);
+    }
+
+    @Override
+    public List<Officers> findAllByRangAndArmyId(Rang rang, int id) {
+        return officersDAO.findAllByRangAndArmyId(rang, id);
+    }
 }

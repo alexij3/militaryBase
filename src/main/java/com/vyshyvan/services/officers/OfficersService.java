@@ -11,5 +11,9 @@ public interface OfficersService {
     Officers updateOfficers(Officers officers);
     void deleteOfficers(int id);
     List<Officers> getAll();
+
     List<Officers> findAllByRang(Rang rang);
+    List<Officers> findAllByRangAndSoldierMilitaryBase_Id(Rang rang, int id);
+    List<Officers> findAllByRangAndDivisionId(Rang rang, int id);
+    List<Officers> findAllByRangAndArmyId(Rang rang, int id);
 }

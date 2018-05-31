@@ -18,6 +18,9 @@
             <button class="dropbtn" style="margin-left: 0">Запити</button>
             <div style="min-width: 700px;" class="dropdown-content">
                 <a href="" data-toggle="modal" data-target="#selectByRangGeneral">Дані по офіцерському складу вказаного рангу загалом</a>
+                <a href="" data-toggle="modal" data-target="#selectByRangAndMilitaryBase">Дані по офіцерському складу вказаного рангу за вказаною частиною</a>
+                <a href="" data-toggle="modal" data-target="#selectByRangAndDivision">Дані по офіцерському складу вказаного рангу за вказаною дивізією</a>
+                <a href="" data-toggle="modal" data-target="#selectByRangAndArmy">Дані по офіцерському складу вказаного рангу за вказаною армією</a>
             </div>
         </div>
     </div>
@@ -44,7 +47,7 @@
                 <td>{{item.becameGeneral}}</td>
                 <td>{{item.soldier.militaryBaseName}}</td>
                 <td>
-                    <button id="update" ng-click="officersCtrl.startUpdate(item.id, item.soldier.id, item.rang, item.academyGraduation, item.becameGeneral)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="update" ng-click="officersCtrl.startUpdate(item.id, item.soldier.name, item.soldier.age, item.soldier.id, item.rang, item.academyGraduation, item.becameGeneral, item.soldier.militaryBaseId)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
                     <button id="delete" ng-click="officersCtrl.del(item.id)" class="btn-danger">Видалити</button>
                 </td>
             </tr>
@@ -143,6 +146,93 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="selectDivisionQueryBtn" ng-click="officersCtrl.findByRang()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="selectByRangAndMilitaryBase" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір рангу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="rangBaseQueryRang" name="Ранг" title="Ранг">
+                        <option>Генерал</option>
+                        <option>Полковник</option>
+                        <option>Підполковник</option>
+                        <option>Майор</option>
+                        <option>Капітан</option>
+                        <option>Лейтенант</option>
+                    </select><br>
+                    <select id="rangBaseQueryBase" name="Військова частина" title="Військова частина">
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="rangBaseQueryBtn" ng-click="officersCtrl.findByRangAndMilitaryBaseId()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="selectByRangAndDivision" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір рангу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="rangDivisionQueryRang" name="Ранг" title="Ранг">
+                        <option>Генерал</option>
+                        <option>Полковник</option>
+                        <option>Підполковник</option>
+                        <option>Майор</option>
+                        <option>Капітан</option>
+                        <option>Лейтенант</option>
+                    </select><br>
+                    <select id="rangDivisionQueryDivision" name="Дивізія" title="Дивізія">
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="rangDivisionBtn" ng-click="officersCtrl.findAllByRangAndDivisionId()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="selectByRangAndArmy" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір рангу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="rangArmyQueryRang" name="Ранг" title="Ранг">
+                        <option>Генерал</option>
+                        <option>Полковник</option>
+                        <option>Підполковник</option>
+                        <option>Майор</option>
+                        <option>Капітан</option>
+                        <option>Лейтенант</option>
+                    </select><br>
+                    <select id="rangArmyQueryArmy" name="Армія" title="Армія">
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="rangArmyBtn" ng-click="officersCtrl.findAllByRangAndArmyId()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

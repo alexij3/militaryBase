@@ -26,6 +26,9 @@ public class Soldier {
     @Transient
     private String militaryBaseName;
 
+    @Transient
+    private long militaryBaseId;
+
     @ElementCollection(targetClass = Specialty.class)
     @CollectionTable(name = "soldier_specialty", joinColumns = @JoinColumn (name = "id_soldier", nullable = false))
     @Enumerated(EnumType.STRING)
@@ -53,6 +56,14 @@ public class Soldier {
         this.age = age;
         this.militaryBase = militaryBase;
         this.militaryBaseName = militaryBase.getName();
+    }
+
+    public long getMilitaryBaseId() {
+        return militaryBase.getId();
+    }
+
+    public void setMilitaryBaseId(long militaryBaseId) {
+        this.militaryBaseId = militaryBaseId;
     }
 
     public Integer getId() {
