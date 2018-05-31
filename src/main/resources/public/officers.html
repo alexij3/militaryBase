@@ -13,6 +13,14 @@
 <body ng-app = "demo">
 Офіцерський склад
 <div class="container-fluid" ng-controller = "OfficersCtrl as officersCtrl">
+    <div id="dropdownWrapper">
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-left: 0">Запити</button>
+            <div style="min-width: 700px;" class="dropdown-content">
+                <a href="" data-toggle="modal" data-target="#selectByRangGeneral">Дані по офіцерському складу вказаного рангу загалом</a>
+            </div>
+        </div>
+    </div>
     <div class="datagrid">
         <table>
             <thead>
@@ -21,6 +29,7 @@
                 <th>Ранг</th>
                 <th>Дата закінчення академії</th>
                 <th>Дата отримання генеральского звання</th>
+                <th>Військова частина</th>
                 <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
                                          ng-click="contestInPalaceCtrl.startCreateOfficers()">Створити</button></th>
             </tr>
@@ -33,6 +42,7 @@
                 <td>{{item.rang}}</td>
                 <td>{{item.academyGraduation}}</td>
                 <td>{{item.becameGeneral}}</td>
+                <td>{{item.soldier.militaryBaseName}}</td>
                 <td>
                     <button id="update" ng-click="officersCtrl.startUpdate(item.id, item.soldier.id, item.rang, item.academyGraduation, item.becameGeneral)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
                     <button id="delete" ng-click="officersCtrl.del(item.id)" class="btn-danger">Видалити</button>
@@ -42,7 +52,7 @@
         </table>
     </div>
 
-    <!-- Додавання до рядового складу -->
+    <!-- Додавання до офіцерського складу -->
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -78,7 +88,7 @@
         </div>
     </div>
 
-    <!-- Редагування рядового складу -->
+    <!-- Редагування офіцерського складу -->
     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -112,6 +122,33 @@
             </div>
 
         </div>
+    </div>
+
+    <div id="selectByRangGeneral" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір рангу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectRangQuery" name="Ранг" title="Ранг">
+                        <option>Генерал</option>
+                        <option>Полковник</option>
+                        <option>Підполковник</option>
+                        <option>Майор</option>
+                        <option>Капітан</option>
+                        <option>Лейтенант</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectDivisionQueryBtn" ng-click="officersCtrl.findByRang()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
 </div>

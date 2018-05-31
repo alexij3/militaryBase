@@ -104,6 +104,19 @@ app.controller("OfficersCtrl", function($scope, $http){
             window.alert("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
+    };
+
+    /**
+     * QUERY
+     */
+
+    this.findByRang = function findByRang(){
+        var rang = $('#selectRangQuery').val();
+
+        $http.get('/api/officers/findAllByRang?rang=' + rang).then(function(response){
+            $scope.officers = response.data;
+        });
+
     }
 });
 

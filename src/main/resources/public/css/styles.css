@@ -107,7 +107,9 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    background-color: #fff
+    background-color: #fff;
+    /*margin: 20px;*/
+    margin: 0
 }
 
 button, input, select, textarea {
@@ -257,4 +259,39 @@ td{
 
 .table-hover > tbody > tr:hover {
     background-color: #0f0f0f
+}
+
+#listWrapper{
+    margin: auto;
+    width: 50%
+}
+
+#ul1 {
+    list-style: none;
+    padding-left: 0;
+}
+
+#ul1 a {
+    text-decoration: none;
+    background: #3d3d3d;
+    color: #fff;
+    padding: 10px;
+    display: block;
+    border-bottom: 1px solid #666;
+    transition: 0.5s all;
+}
+
+#ul1 a:hover{
+    background: #666;
+    padding: 10px 0 10px 20px;
+}
+
+#ul1 li:first-child a,
+#ul1 li .drop li:first-child a{
+    border-radius: 4px 4px 0 0;
+}
+
+#ul1 li:last-child a,
+#ul1 li:last-child a{
+    border-radius: 0 0 4px 4px;
 }

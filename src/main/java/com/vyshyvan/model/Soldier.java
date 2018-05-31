@@ -97,7 +97,7 @@ public class Soldier {
     }
 
     public String getMilitaryBaseName() {
-        return militaryBaseName;
+        return militaryBase.getName();
     }
 
     public void setMilitaryBaseName(String militaryBaseName) {

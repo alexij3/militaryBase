@@ -12,6 +12,16 @@
 <body ng-app = "demo">
 Військові частини
 <div class="container-fluid" ng-controller = "MilitaryBaseCtrl as militaryBaseCtrl">
+    <div id="dropdownWrapper">
+    <div class="dropdown">
+        <button class="dropbtn" style="margin-left: 0">Запити</button>
+        <div style="min-width: 700px;" class="dropdown-content">
+            <a href="" data-toggle="modal" data-target="#selectByArmyModal">Список військових частин вказаної армії</a>
+            <a href="" data-toggle="modal" data-target="#selectByDivisionModal">Список військових частин вказаної дивізії</a>
+            <a href="" data-toggle="modal" data-target="#selectByCorpsModal">Список військових частин вказаної корпусу</a>
+        </div>
+    </div>
+    </div>
     <div class="datagrid">
         <table>
             <thead>
@@ -121,7 +131,68 @@
         </div>
     </div>
 
-</div>
+    <div id="selectByArmyModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір армії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectArmyQuery" name="Армії" title="Армії">
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showArtistsByGenre" ng-click="militaryBaseCtrl.findByArmyId()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="selectByDivisionModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір дивізії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectDivisionQuery" name="Дивізії" title="Дивізія">
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectDivisionQueryBtn" ng-click="militaryBaseCtrl.findByDivisionId()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="selectByCorpsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір корпусу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectCorpsQuery" name="Корпуси" title="Корпус">
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectCorpsQueryBtn" ng-click="militaryBaseCtrl.findByCorpsId()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 
 

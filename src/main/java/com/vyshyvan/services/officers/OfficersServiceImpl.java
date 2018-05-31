@@ -1,6 +1,7 @@
 package com.vyshyvan.services.officers;
 
 import com.vyshyvan.model.Officers;
+import com.vyshyvan.model.Rang;
 import com.vyshyvan.repositories.officers.OfficersDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,10 @@ public class OfficersServiceImpl implements OfficersService {
     @Override
     public List<Officers> getAll() {
         return (List<Officers>) officersDAO.findAll();
+    }
+
+    @Override
+    public List<Officers> findAllByRang(Rang rang) {
+        return officersDAO.findAllByRang(rang);
     }
 }

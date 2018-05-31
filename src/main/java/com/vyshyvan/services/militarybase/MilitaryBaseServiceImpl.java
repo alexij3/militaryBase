@@ -1,5 +1,7 @@
 package com.vyshyvan.services.militarybase;
 
+import com.vyshyvan.model.Corps;
+import com.vyshyvan.model.Division;
 import com.vyshyvan.model.MilitaryBase;
 import com.vyshyvan.repositories.militarybase.MilitaryBaseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,20 @@ public class MilitaryBaseServiceImpl implements MilitaryBaseService {
     @Override
     public List<MilitaryBase> getAll() {
         return (List<MilitaryBase>) militaryBaseDAO.findAll();
+    }
+
+    @Override
+    public List<MilitaryBase> findAllByArmyId(int id) {
+        return militaryBaseDAO.findAllByArmyId(id);
+    }
+
+    @Override
+    public List<MilitaryBase> findAllByDivisionId(int id) {
+        return militaryBaseDAO.findAllByDivisionId(id);
+    }
+
+    @Override
+    public List<MilitaryBase> findAllByCorpsId(int id) {
+        return militaryBaseDAO.findAllByCorpsId(id);
     }
 }

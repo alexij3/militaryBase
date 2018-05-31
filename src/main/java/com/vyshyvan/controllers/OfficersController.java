@@ -58,4 +58,9 @@ public class OfficersController {
         officersService.deleteOfficers(id);
     }
 
+    @RequestMapping("/findAllByRang")
+    public List<Officers> findAllByRang(@RequestParam("rang") Rang rang){
+        return officersService.findAllByRang(rang);
+    }
+
 }

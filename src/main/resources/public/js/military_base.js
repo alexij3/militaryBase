@@ -41,6 +41,7 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
         var armies = response.data;
         var select = document.getElementById('selectArmy');
         var selectArmyUpd = document.getElementById('updSelectArmy');
+        var selectArmyQuery = document.getElementById('selectArmyQuery');
 
         for (var i = 0; i < armies.length; i++) {
             var option = document.createElement("option");
@@ -61,6 +62,15 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
             console.log(selectArmyUpd);
         }
 
+        for (var k = 0; k < armies.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = armies[k].name;
+            option3.value = armies[k].id;
+
+            selectArmyQuery.add(option3);
+            console.log(selectArmyQuery);
+        }
+
 
     });
 
@@ -69,6 +79,7 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
         var divisions = response.data;
         var select = document.getElementById('selectDivision');
         var selectDivisionUpd = document.getElementById('updSelectDivision');
+        var selectDivisionQuery = document.getElementById('selectDivisionQuery');
 
         for (var i = 0; i < divisions.length; i++) {
             var option = document.createElement("option");
@@ -89,6 +100,15 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
             console.log(selectDivisionUpd);
         }
 
+        for (var k = 0; k < divisions.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = divisions[k].name;
+            option3.value = divisions[k].id;
+
+            selectDivisionQuery.add(option3);
+            console.log(selectDivisionQuery);
+        }
+
 
     });
 
@@ -97,6 +117,7 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
         var corps = response.data;
         var select = document.getElementById('selectCorps');
         var selectCorpsUpd = document.getElementById('updSelectCorps');
+        var selectCorpsQuery = document.getElementById('selectCorpsQuery');
 
         for (var i = 0; i < corps.length; i++) {
             var option = document.createElement("option");
@@ -117,6 +138,14 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
             console.log(selectCorpsUpd);
         }
 
+        for (var k = 0; k < corps.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = corps[k].name;
+            option3.value = corps[k].id;
+
+            selectCorpsQuery.add(option3);
+            console.log(selectCorpsQuery);
+        }
 
     });
 
@@ -283,6 +312,34 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
         this.del = function del(id){
             $http.post('/api/militarybase/delete?id=' + id);
             window.location.reload();
+        };
+
+        /**********
+         * QUERIES
+         *********/
+
+        this.findByArmyId = function findByArmyId(){
+            var id = $('#selectArmyQuery').val();
+
+            $http.get('/api/militarybase/findAllByArmyId?id=' + id).then(function (response){
+                $scope.militaryBase = response.data;
+            });
+        };
+
+        this.findByDivisionId = function findByDivisionId(){
+            var id = $('#selectDivisionQuery').val();
+
+            $http.get('/api/militarybase/findAllByDivisionId?id=' + id).then(function (response){
+                $scope.militaryBase = response.data;
+            });
+        };
+
+        this.findByCorpsId = function findByCorpsId(){
+            var id = $('#selectCorpsQuery').val();
+
+            $http.get('/api/militarybase/findAllByCorpsId?id=' + id).then(function (response){
+                $scope.militaryBase = response.data;
+            });
         }
 });
 

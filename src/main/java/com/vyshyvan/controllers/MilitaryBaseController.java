@@ -121,4 +121,21 @@ public class MilitaryBaseController {
     public void delete(@RequestParam("id") int id){
         militaryBaseService.deleteMilitaryBase(id);
     }
+
+    @RequestMapping("/findAllByArmyId")
+    public List<MilitaryBase> findAllByArmyId(@RequestParam("id") int id){
+        return militaryBaseService.findAllByArmyId(id);
+    }
+
+    @RequestMapping("/findAllByDivisionId")
+    public List<MilitaryBase> findAllByDivisionId(@RequestParam("id") int id){
+        return militaryBaseService.findAllByDivisionId(id);
+    }
+
+    @RequestMapping("/findAllByCorpsId")
+    public List<MilitaryBase> findAllByCorpsId(@RequestParam("id") int id){
+        return militaryBaseService.findAllByCorpsId(id);
+    }
+
+
 }
