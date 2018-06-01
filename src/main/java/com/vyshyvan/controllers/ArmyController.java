@@ -1,6 +1,7 @@
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.Army;
+import com.vyshyvan.repositories.army.ArmyDAO;
 import com.vyshyvan.services.army.ArmyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,9 @@ public class ArmyController {
     @Autowired
     ArmyServiceImpl armyService;
 
+    @Autowired
+    ArmyDAO armyDAO;
+
     @RequestMapping("/showall")
     public List<Army> showArmies(){
         return armyService.getAll();
@@ -27,7 +31,7 @@ public class ArmyController {
     }
 
     @RequestMapping("/update")
-    public Army updateArmy(@RequestParam("id") Integer id, @RequestBody Army army) {
+    public Army updateArmy(@RequestParam("id") Long id, @RequestBody Army army) {
         army.setId(id);
         return armyService.updateArmy(army);
     }
@@ -40,6 +44,16 @@ public class ArmyController {
     @RequestMapping("/get")
     public Army get(@RequestParam("id") int id){
         return armyService.getArmy(id);
+    }
+
+    @RequestMapping("/findByMaxBases")
+    public List<Army> findByMaxBases(){
+        return armyDAO.findArmyByMaxBases();
+    }
+
+    @RequestMapping("/findByMinBases")
+    public List<Army> findByMinBases(){
+        return armyDAO.findArmyByMinBases();
     }
 
 }

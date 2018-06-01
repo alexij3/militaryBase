@@ -71,7 +71,19 @@ app.controller("CorpsCtrl", function($scope, $http){
 
     this.getCorps = function getCorps(id){
         $http.get('/api/corps/get?id=' + id);
-    }
+    };
+
+    this.selectByMaxBases = function selectByMaxBases(){
+        $http.get('/api/corps/findByMaxBases').then(function(response){
+            $scope.corps = response.data;
+        });
+    };
+
+    this.selectByMinBases = function selectByMinBases(){
+        $http.get('/api/corps/findByMinBases').then(function(response){
+            $scope.corps = response.data;
+        });
+    };
 });
 
 

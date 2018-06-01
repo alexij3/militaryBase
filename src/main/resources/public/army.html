@@ -14,6 +14,15 @@
 <body ng-app = "demo">
 Армії<br>
 <div class="container-fluid" ng-controller = "ArmyCtrl as armyCtrl">
+    <div id="dropdownWrapper">
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-left: 0">Запити</button>
+            <div style="min-width: 700px;" class="dropdown-content">
+                <a href="" ng-click="armyCtrl.selectByMaxBases()">Армії, в які входять найбільше військових частин</a>
+                <a href="" ng-click="armyCtrl.selectByMinBases()">Армії, в які входять найменше військових частин</a>
+            </div>
+        </div>
+    </div>
     <div class="datagrid">
         <table>
             <thead>

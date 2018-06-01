@@ -1,5 +1,6 @@
 package com.vyshyvan.repositories.militarybase;
 
+import com.vyshyvan.model.Army;
 import com.vyshyvan.model.Corps;
 import com.vyshyvan.model.Division;
 import com.vyshyvan.model.MilitaryBase;
@@ -20,7 +21,6 @@ public interface MilitaryBaseDAO extends JpaRepository<MilitaryBase, Integer> {
 
     @Query("SELECT a FROM MilitaryBase a WHERE a.corps.id = :id")
     List<MilitaryBase> findAllByCorpsId(@Param("id") int id);
-
 
 }
 

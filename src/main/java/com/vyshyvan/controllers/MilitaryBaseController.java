@@ -26,7 +26,7 @@ public class MilitaryBaseController {
     }
 
     @RequestMapping("/create")
-    public MilitaryBase create(int armyId, int divisionId, int corpsId, int brigadeId, int captainId, int dislocationId,
+    public MilitaryBase create(long armyId, int divisionId, int corpsId, int brigadeId, int captainId, int dislocationId,
                                @RequestBody MilitaryBase militaryBaseInput){
         Army army = new Army();
         Buildings buildings = new Buildings();
@@ -69,7 +69,7 @@ public class MilitaryBaseController {
     }
 
     @RequestMapping("/update")
-    public MilitaryBase update(int id, int armyId, int divisionId, int corpsId, int brigadeId, int captainId, int dislocationId,
+    public MilitaryBase update(int id, long armyId, int divisionId, int corpsId, int brigadeId, int captainId, int dislocationId,
                                @RequestBody MilitaryBase militaryBaseInput){
         Army army = new Army();
         Buildings buildings = new Buildings();

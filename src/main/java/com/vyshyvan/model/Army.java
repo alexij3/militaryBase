@@ -9,7 +9,7 @@ import java.util.Set;
 public class Army {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "code_number")
     private String codeNumber;
@@ -22,6 +22,7 @@ public class Army {
     private Set<MilitaryBase> militaryBase;
 
     public Army() {
+
     }
 
     public Army(String codeNumber, String name) {
@@ -29,12 +30,26 @@ public class Army {
         this.name = name;
     }
 
-    public Integer getId() {
+    public Army(Long id, String name, String codeNumber){
+        this.id = id;
+        this.name = name;
+        this.codeNumber = codeNumber;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<MilitaryBase> getMilitaryBase() {
+        return militaryBase;
+    }
+
+    public void setMilitaryBase(Set<MilitaryBase> militaryBase) {
+        this.militaryBase = militaryBase;
     }
 
     public String getCodeNumber() {

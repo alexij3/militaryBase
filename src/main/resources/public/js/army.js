@@ -70,7 +70,24 @@ app.controller("ArmyCtrl", function($scope, $http){
 
     this.getArmy = function getArmy(id){
         $http.get('/api/army/get?id=' + id);
-    }
+    };
+
+    /**
+     * QUERIES
+     */
+
+    this.selectByMaxBases = function selectByMaxBases(){
+        $http.get('/api/army/findByMaxBases').then(function(response){
+            $scope.armies = response.data;
+        });
+    };
+
+    this.selectByMinBases = function selectByMinBases(){
+        $http.get('/api/army/findByMinBases').then(function(response){
+            $scope.armies = response.data;
+        });
+    };
+
 });
 
 

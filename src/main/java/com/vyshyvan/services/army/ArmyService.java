@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ArmyService {
     Army insertArmy(Army army);
-    Army getArmy(int id);
+    Army getArmy(long id);
     Army updateArmy(Army army);
-    void deleteArmy(int id);
+    void deleteArmy(long id);
     List<Army> getAll();
 }

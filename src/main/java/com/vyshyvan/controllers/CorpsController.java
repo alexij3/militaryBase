@@ -2,6 +2,7 @@ package com.vyshyvan.controllers;
 
 
 import com.vyshyvan.model.Corps;
+import com.vyshyvan.repositories.corps.CorpsDAO;
 import com.vyshyvan.services.corps.CorpsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,9 @@ import java.util.List;
 public class CorpsController {
     @Autowired
     CorpsServiceImpl corpsService;
+
+    @Autowired
+    CorpsDAO corpsDAO;
 
     @RequestMapping("/showall")
     public List<Corps> showCorps(){
@@ -41,6 +45,16 @@ public class CorpsController {
     @RequestMapping("/get")
     public Corps get(@RequestParam("id") int id){
         return corpsService.getCorps(id);
+    }
+
+    @RequestMapping("/findByMaxBases")
+    public List<Corps> findByMaxBases(){
+        return corpsDAO.findByMaxBases();
+    }
+
+    @RequestMapping("/findByMinBases")
+    public List<Corps> findByMinBases(){
+        return corpsDAO.findByMinBases();
     }
 }
 

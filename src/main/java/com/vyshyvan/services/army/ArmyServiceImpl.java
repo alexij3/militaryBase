@@ -18,7 +18,7 @@ public class ArmyServiceImpl implements ArmyService {
     }
 
     @Override
-    public Army getArmy(int id) {
+    public Army getArmy(long id) {
         return armyDAO.findById(id).get();
     }
 
@@ -28,7 +28,7 @@ public class ArmyServiceImpl implements ArmyService {
     }
 
     @Override
-    public void deleteArmy(int id) {
+    public void deleteArmy(long id) {
         armyDAO.deleteById(id);
     }
 

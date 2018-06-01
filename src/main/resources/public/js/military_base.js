@@ -244,6 +244,10 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
             brigadeId = document.getElementById('selectBrigade').value;
             corpsId = 0;
             divisionId = 0;
+        }else{
+            brigadeId = 0;
+            corpsId = 0;
+            divisionId = 0;
         }
 
         var captainId = document.getElementById('selectCaptain').value;
@@ -299,6 +303,10 @@ app.controller("MilitaryBaseCtrl", function($scope, $http){
                 brigadeId = 0;
             }else if (document.getElementById('updRadioBrigade').checked == true){
                 brigadeId = document.getElementById('updSelectBrigade').value;
+                corpsId = 0;
+                divisionId = 0;
+            }else{
+                brigadeId = 0;
                 corpsId = 0;
                 divisionId = 0;
             }

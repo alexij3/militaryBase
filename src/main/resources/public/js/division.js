@@ -71,7 +71,19 @@ app.controller("DivisionCtrl", function($scope, $http){
 
     this.getDivision = function getDivision(id){
         $http.get('/api/division/get?id=' + id);
-    }
+    };
+
+    this.selectByMaxBases = function selectByMaxBases(){
+        $http.get('/api/division/findByMaxBases').then(function(response){
+            $scope.division = response.data;
+        });
+    };
+
+    this.selectByMinBases = function selectByMinBases(){
+        $http.get('/api/division/findByMinBases').then(function(response){
+            $scope.division = response.data;
+        });
+    };
 });
 
 
