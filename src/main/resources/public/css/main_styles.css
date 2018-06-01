@@ -1,0 +1,40 @@
+html{
+    height: 100%
+}
+
+#wrapper{
+    padding: 10px 45px;
+    width: 70%;
+    height: 600px;
+    border: 2px solid #1b6d85;
+}
+
+#wrapper .tables{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #dc6542;
+    border-radius: 5px;
+
+    text-decoration: none;
+    font: 36px Montserrat;
+    @font-face: 36px Motserrat;
+    color: #c45f3c;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    float: left;
+}
+
+#wrapper #division{
+    margin: 0;
+}
+
+#wrapper .tables:hover{
+    background-color: #c45f3c;
+    color: #fff;
+}
+
+table{
+    border-spacing: 50px;
+}
