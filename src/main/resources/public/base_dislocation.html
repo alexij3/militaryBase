@@ -1,39 +1,47 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Бригади</title>
+    <title>Армії</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body ng-app = "demo">
-Бригади
-<div class="container-fluid" ng-controller = "BrigadeCtrl as brigadeCtrl">
+<div class="container" ng-controller = "DislocationCtrl as dislocationCtrl">
+    <div id="dropdownWrapper">
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-left: 0">Запити</button>
+            <div style="min-width: 700px;" class="dropdown-content">
+                <a href="" data-toggle="modal" data-target="#selectByBase">Перелік місць дизлокації для вказаної військової частини</a>
+                <a href="" data-toggle="modal" data-target="#selectByArmy">Перелік місць дизлокації для вказаної армії</a>
+                <a href="" data-toggle="modal" data-target="#selectByDivision">Перелік місць дизлокації для вказаної дивізії</a>
+                <a href="" data-toggle="modal" data-target="#selectByCorps">Перелік місць дизлокації для вказаного корпусу</a>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md12">
             <div class="panel panel-default">
-                <div class="panel-heading"></div>
+                <div class="panel-heading">Дизлокації частин</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>&#128273ІД</th>
-                            <th>Номер</th>
-                            <th>Назва</th>
+                            <th>Військова частина</th>
+                            <th>Місце дизлокації</th>
                             <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
                         </tr>
                         </thead>
 
                         <tbody>
 
-                        <tr ng-repeat = "item in brigades">
-                            <td>{{item.id}}</td>
-                            <td>{{item.codeNumber}}</td>
-                            <td>{{item.name}}</td>
+                        <tr ng-repeat = "item in dislocations">
+                            <td>{{item.militaryBase.name}}</td>
+                            <td>{{item.dislocation.name}}</td>
                             <td>
-                                <button id="update" ng-click="brigadeCtrl.startUpdateBrigade(item.id, item.name, item.codeNumber)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                                <button id="delete" ng-click="brigadeCtrl.deleteBrigade(item.id)" class="btn-danger">Видалити</button>
+                                <button id="update" ng-click="armyCtrl.startUpdateArmy(item.id, item.name, item.codeNumber)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                                <button id="delete" ng-click="armyCtrl.deleteArmy(item.id)" class="btn-danger">Видалити</button>
                             </td>
                         </tr>
                         </tbody>
@@ -43,6 +51,7 @@
         </div>
     </div>
 
+    <div id="btnWrapper"><a href="main2.html" class="button">Головна сторінка</a></div>
     <!-- Додавання армії -->
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -53,13 +62,13 @@
                 </div>
                 <div class="modal-body">
                     <label>Кодовий номер:</label>
-                    <input type="text" id="brigadeCode" name="brigadeCode" /> <br>
+                    <input type="text" id="armyCode" name="armyCode" /> <br>
                     <label>Назва:</label>
-                    <input type="text" id="brigadeName" name="brigadeName" />
+                    <input type="text" id="armyName" name="armyName" />
 
                 </div>
                 <div class="modal-footer">
-                    <button class = "btn btn-default" id="createBrigadeButton" ng-click="brigadeCtrl.createBrigade()">Створити</button>
+                    <button class = "btn btn-default" id="createArmyButton" ng-click="armyCtrl.createArmy()">Створити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -77,10 +86,10 @@
                 </div>
                 <div class="modal-body">
                     <label>Кодовий номер:</label>
-                    <input type="text" id="updateBrigadeCode" name="updateBrigadeCode" /> <br>
+                    <input type="text" id="updateArmyCode" name="updateArmyCode" /> <br>
                     <label>Назва:</label>
-                    <input type="text" id="updateBrigadeName" name="updateBrigadeName" />
-                    <button id="editBrigadeButton" ng-click="brigadeCtrl.updateBrigade()">Змінити</button>
+                    <input type="text" id="updateArmyName" name="updateArmyName" />
+                    <button id="editArmyButton" ng-click="armyCtrl.updateArmy()">Змінити</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
@@ -97,7 +106,7 @@
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/brigade.js"></script>
+<script type="text/javascript" src="js/army.js"></script>
 
 
 

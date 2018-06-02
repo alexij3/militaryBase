@@ -35,11 +35,6 @@ public class MilitaryBase {
     @JoinColumn(name = "brigade_id")
     private Brigade brigade;
 
-    @ManyToOne
-    @JoinColumn(name="dislocation")
-    @NotNull
-    private Buildings dislocation;
-
     @OneToOne
     @JoinColumn(name = "captain_id")
     private Soldier captain;
@@ -127,21 +122,12 @@ public class MilitaryBase {
         this.corps = corps;
     }
 
-
     public Brigade getBrigade() {
         return brigade;
     }
 
     public void setBrigade(Brigade brigade) {
         this.brigade = brigade;
-    }
-
-    public Buildings getDislocation() {
-        return dislocation;
-    }
-
-    public void setDislocation(Buildings dislocation) {
-        this.dislocation = dislocation;
     }
 
     public Set<TransportInMilitaryBase> getTransportInMilitaryBase() {

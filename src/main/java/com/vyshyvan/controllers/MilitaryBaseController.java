@@ -62,8 +62,6 @@ public class MilitaryBaseController {
 
         militaryBase.setName(militaryBaseInput.getName());
         militaryBase.setArmy(army);
-        militaryBase.setDislocation(buildings);
-
 
         return militaryBaseService.insertMilitaryBase(militaryBase);
     }
@@ -106,8 +104,6 @@ public class MilitaryBaseController {
 
         militaryBase.setName(militaryBaseInput.getName());
         militaryBase.setArmy(army);
-        militaryBase.setDislocation(buildings);
-
 
         return militaryBaseService.updateMilitaryBase(militaryBase);
     }
