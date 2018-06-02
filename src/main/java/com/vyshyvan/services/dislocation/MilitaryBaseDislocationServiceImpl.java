@@ -1,7 +1,7 @@
 package com.vyshyvan.services.dislocation;
 
 import com.vyshyvan.model.MilitaryBaseDislocation;
-import com.vyshyvan.repositories.dislocation.MilitaryBaseDislocationRepository;
+import com.vyshyvan.repositories.militarybasedislocation.MilitaryBaseDislocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +35,25 @@ public class MilitaryBaseDislocationServiceImpl implements MilitaryBaseDislocati
     @Override
     public List<MilitaryBaseDislocation> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<MilitaryBaseDislocation> findAllByMilitaryBaseId(int id) {
+        return repository.findAllByMilitaryBaseId(id);
+    }
+
+    @Override
+    public List<MilitaryBaseDislocation> findAllByMilitaryBaseArmy_Id(int id) {
+        return repository.findAllByMilitaryBaseArmy_Id(id);
+    }
+
+    @Override
+    public List<MilitaryBaseDislocation> findAllByMilitaryBaseDivision_Id(int id) {
+        return repository.findAllByMilitaryBaseDivision_Id(id);
+    }
+
+    @Override
+    public List<MilitaryBaseDislocation> findAllByMilitaryBaseCorps_Id(int id) {
+        return repository.findAllByMilitaryBaseCorps_Id(id);
     }
 }

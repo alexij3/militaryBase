@@ -20,6 +20,7 @@ public class MilitaryBaseDislocationController {
     @RequestMapping("/insert")
     MilitaryBaseDislocation insert(@RequestParam("baseId") int baseId,
                                    @RequestParam("dislocationId") int dislocationId){
+        System.out.println("in method");
         MilitaryBase militaryBase = new MilitaryBase();
         militaryBase.setId(baseId);
 
@@ -64,5 +65,25 @@ public class MilitaryBaseDislocationController {
     @RequestMapping("/showall")
     List<MilitaryBaseDislocation> getAll(){
         return service.getAll();
+    }
+
+    @RequestMapping("/findAllByMilitaryBaseId")
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseId(int id){
+        return service.findAllByMilitaryBaseId(id);
+    }
+
+    @RequestMapping("/findAllByMilitaryBaseArmyId")
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseArmyId(int id){
+        return service.findAllByMilitaryBaseArmy_Id(id);
+    }
+
+    @RequestMapping("/findAllByMilitaryBaseDivisionId")
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseDivisionId(int id){
+        return service.findAllByMilitaryBaseDivision_Id(id);
+    }
+
+    @RequestMapping("/findAllByMilitaryBaseCorpsId")
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseCorpsId(int id){
+        return service.findAllByMilitaryBaseCorps_Id(id);
     }
 }

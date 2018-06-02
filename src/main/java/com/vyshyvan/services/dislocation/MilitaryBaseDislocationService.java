@@ -11,4 +11,9 @@ public interface MilitaryBaseDislocationService {
     MilitaryBaseDislocation update(MilitaryBaseDislocation militaryBaseDislocation);
     void delete(int id);
     List<MilitaryBaseDislocation> getAll();
+
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseId(int id);
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseArmy_Id(int id);
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseDivision_Id(int id);
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseCorps_Id(int id);
 }
