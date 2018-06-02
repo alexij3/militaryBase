@@ -43,7 +43,7 @@ public class MilitaryBaseDislocationServiceImpl implements MilitaryBaseDislocati
     }
 
     @Override
-    public List<MilitaryBaseDislocation> findAllByMilitaryBaseArmy_Id(int id) {
+    public List<MilitaryBaseDislocation> findAllByMilitaryBaseArmy_Id(long id) {
         return repository.findAllByMilitaryBaseArmy_Id(id);
     }
 

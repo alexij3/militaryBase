@@ -73,7 +73,7 @@ public class MilitaryBaseDislocationController {
     }
 
     @RequestMapping("/findAllByMilitaryBaseArmyId")
-    List<MilitaryBaseDislocation> findAllByMilitaryBaseArmyId(int id){
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseArmyId(long id){
         return service.findAllByMilitaryBaseArmy_Id(id);
     }
 

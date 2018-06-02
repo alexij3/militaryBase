@@ -13,7 +13,7 @@ public interface MilitaryBaseDislocationService {
     List<MilitaryBaseDislocation> getAll();
 
     List<MilitaryBaseDislocation> findAllByMilitaryBaseId(int id);
-    List<MilitaryBaseDislocation> findAllByMilitaryBaseArmy_Id(int id);
+    List<MilitaryBaseDislocation> findAllByMilitaryBaseArmy_Id(long id);
     List<MilitaryBaseDislocation> findAllByMilitaryBaseDivision_Id(int id);
     List<MilitaryBaseDislocation> findAllByMilitaryBaseCorps_Id(int id);
 }

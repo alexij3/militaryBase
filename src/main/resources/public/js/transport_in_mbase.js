@@ -14,6 +14,7 @@ app.controller("TransportInMbaseCtrl", function($scope, $http){
             bases = response.data;
             var select = document.getElementById('militaryBase');
             var selectMbaseUpd = document.getElementById('updMilitaryBase');
+            var queryBase = document.getElementById('selectBase');
 
             for (var i = 0; i < bases.length; i++) {
                 var option = document.createElement("option");
@@ -33,6 +34,16 @@ app.controller("TransportInMbaseCtrl", function($scope, $http){
                 selectMbaseUpd.add(option2);
 
                 console.log(selectMbaseUpd);
+            }
+
+            for (var k = 0; k < bases.length; k++){
+                var option3 = document.createElement("option");
+                option3.text = bases[k].name;
+                option3.value = bases[k].id;
+
+                queryBase.add(option3);
+
+                console.log(queryBase);
             }
 
         });
@@ -120,7 +131,29 @@ app.controller("TransportInMbaseCtrl", function($scope, $http){
             window.alert("Видалення відбулося за " + time + " мс.");
             window.location.reload();
         });
-    }
+    };
+
+    /**
+     * QUERIES
+     */
+
+    this.selectByType = function selectByType(){
+        var type = $('#selectType').val();
+
+        $http.get('/api/transportinmbase/findAllByTransportType?type=' + type).then(function(response){
+            $scope.transport = response.data;
+        });
+    };
+
+    this.selectByBaseAndType = function selectByBaseAndType(){
+        var id = $('#selectBase').val();
+        var type = $('#selectTypeBaseAndType').val();
+        window.alert(type);
+
+        $http.get('/api/transportinmbase/findAllByBaseAndTransportType?id=' + id + '&type=' + type).then(function(response){
+            $scope.transport = response.data;
+        });
+    };
 });
 
 

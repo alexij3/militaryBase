@@ -3,6 +3,7 @@ package com.vyshyvan.controllers;
 import com.vyshyvan.model.MilitaryBase;
 import com.vyshyvan.model.Transport;
 import com.vyshyvan.model.TransportInMilitaryBase;
+import com.vyshyvan.model.TransportType;
 import com.vyshyvan.services.transportinmilitarybase.TransportInMilitaryBaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +56,18 @@ public class TransportInMilitaryBaseController {
     @RequestMapping("/delete")
     public void delete(@RequestParam int id){
         transportInMilitaryBaseService.deleteTransportInMilitaryBase(id);
+    }
+
+    @RequestMapping("/findAllByTransportType")
+    public List<TransportInMilitaryBase> findAllByTransportType(@RequestParam("type") TransportType type){
+        return transportInMilitaryBaseService.findAllByTransportType(type);
+    }
+
+    @RequestMapping("/findAllByBaseAndTransportType")
+    public List<TransportInMilitaryBase> findAllByBaseAndTransportType(@RequestParam("id") int id,
+                                                                       @RequestParam("type") TransportType type){
+        System.out.println(type);
+        System.out.println(id);
+        return transportInMilitaryBaseService.findAllByBaseAndTransportType(id, type);
     }
 }
