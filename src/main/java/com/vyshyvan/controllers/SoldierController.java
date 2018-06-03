@@ -1,9 +1,6 @@
 package com.vyshyvan.controllers;
 
-import com.vyshyvan.model.MilitaryBase;
-import com.vyshyvan.model.Ordinary;
-import com.vyshyvan.model.Rang;
-import com.vyshyvan.model.Soldier;
+import com.vyshyvan.model.*;
 import com.vyshyvan.services.militarybase.MilitaryBaseService;
 import com.vyshyvan.services.militarybase.MilitaryBaseServiceImpl;
 import com.vyshyvan.services.soldier.SoldierServiceImpl;
@@ -46,7 +43,7 @@ public class SoldierController {
 
         soldier.setId(id);
         soldier.setMilitaryBase(militaryBase);
-
+        soldier.setSpecialty(soldier.getSpecialty());
 
         return soldierService.updateSoldier(soldier);
     }
@@ -71,5 +68,35 @@ public class SoldierController {
     public void deleteSpecialties(@RequestParam("soldierId") int id, @RequestBody Soldier soldier){
         soldier.setId(id);
         soldierService.deleteSpecialties(soldier);
+    }
+
+    @RequestMapping("/findAllBySpecialtyContainingAndMilitaryBaseArmyId")
+    public List<Soldier> findAllBySpecialtyContainingAndMilitaryBaseArmyId(@RequestParam("specialty") Specialty specialty,
+                                                                           @RequestParam("id") long id){
+        return soldierService.findAllBySpecialtyContainingAndMilitaryBase_ArmyId(specialty, id);
+    }
+
+    @RequestMapping("/findAllBySpecialtyContainingAndMilitaryBaseId")
+    public List<Soldier> findAllBySpecialtyContainingAndMilitaryBaseId(@RequestParam("specialty") Specialty specialty,
+                                                                           @RequestParam("id") int id){
+        return soldierService.findAllBySpecialtyContainingAndMilitaryBaseId(specialty, id);
+    }
+
+    @RequestMapping("/findAllBySpecialtyContainingAndMilitaryBaseDivisionId")
+    public List<Soldier> findAllBySpecialtyContainingAndMilitaryBaseDivisionId(@RequestParam("specialty") Specialty specialty,
+                                                                               @RequestParam("id") int id){
+        return soldierService.findAllBySpecialtyContainingAndMilitaryBase_Division_Id(specialty, id);
+    }
+
+    @RequestMapping("/findAllBySpecialtyContainingAndMilitaryBaseCorpsId")
+    public List<Soldier> findAllBySpecialtyContainingAndMilitaryBaseCorpsId(@RequestParam("specialty") Specialty specialty,
+                                                                               @RequestParam("id") int id){
+        return soldierService.findAllBySpecialtyContainingAndMilitaryBase_Corps_Id(specialty, id);
+    }
+
+    @RequestMapping("/findAllBySpecialtyContainingAndMilitaryBaseBrigadeId")
+    public List<Soldier> findAllBySpecialtyContainingAndMilitaryBaseBrigadeId(@RequestParam("specialty") Specialty specialty,
+                                                                            @RequestParam("id") int id){
+        return soldierService.findAllBySpecialtyContainingAndMilitaryBase_Brigade_Id(specialty, id);
     }
 }

@@ -3,6 +3,7 @@ package com.vyshyvan.services.militarybase;
 import com.vyshyvan.model.Corps;
 import com.vyshyvan.model.Division;
 import com.vyshyvan.model.MilitaryBase;
+import com.vyshyvan.model.WeaponryType;
 
 import java.util.List;
 

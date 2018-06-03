@@ -55,6 +55,11 @@ public class MilitaryBase {
         this.name = name;
     }
 
+    public MilitaryBase(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public MilitaryBase(String name, Army army, Division division, Corps corps, Brigade brigade, Soldier captain) {
         this.name = name;
         this.army = army;

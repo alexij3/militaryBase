@@ -3,6 +3,8 @@ package com.vyshyvan.controllers;
 import com.vyshyvan.model.MilitaryBase;
 import com.vyshyvan.model.Weaponry;
 import com.vyshyvan.model.WeaponryInMilitaryBase;
+import com.vyshyvan.model.WeaponryType;
+import com.vyshyvan.repositories.weaponryinmilitarybase.WeaponryInMilitaryBaseDAO;
 import com.vyshyvan.services.weaponryinmilitarybase.WeaponryInMilitaryBaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,9 @@ import java.util.List;
 public class WeaponryInMilitaryBaseController {
     @Autowired
     WeaponryInMilitaryBaseServiceImpl weaponryInMilitaryBaseService;
+
+    @Autowired
+    WeaponryInMilitaryBaseDAO dao;
 
     @RequestMapping("/showall")
     public List<WeaponryInMilitaryBase> showWeaponryInMilitaryBases(){
@@ -55,6 +60,35 @@ public class WeaponryInMilitaryBaseController {
     @RequestMapping("/delete")
     public void delete(@RequestParam int id){
         weaponryInMilitaryBaseService.deleteWeaponryInMilitaryBase(id);
+    }
+
+    @RequestMapping("/findAllByWeaponryType")
+    public List<WeaponryInMilitaryBase> findAllByWeaponryType(@RequestParam("type") WeaponryType type){
+        return weaponryInMilitaryBaseService.findAllByWeaponryType(type);
+    }
+
+    @RequestMapping("/findAllByBaseAndWeaponryType")
+    public List<WeaponryInMilitaryBase> findAllByBaseAndWeaponryType(@RequestParam("id") int id,
+                                                                     @RequestParam("type") WeaponryType type){
+        return weaponryInMilitaryBaseService.findAllByBaseAndWeaponryType(id, type);
+    }
+
+    @RequestMapping("/findAllByArmyAndWeaponryType")
+    public List<WeaponryInMilitaryBase> findAllByArmyAndWeaponryType(@RequestParam("id") long id,
+                                                                     @RequestParam("type") WeaponryType type){
+        return weaponryInMilitaryBaseService.findAllByArmyAndWeaponryType(id, type);
+    }
+
+    @RequestMapping("/findAllByDivisionAndWeaponryType")
+    public List<WeaponryInMilitaryBase> findAllByDivisionAndWeaponryType(@RequestParam("id") int id,
+                                                                         @RequestParam("type") WeaponryType type){
+        return weaponryInMilitaryBaseService.findAllByDivisionAndWeaponryType(id, type);
+    }
+
+    @RequestMapping("/findAllByCorpsAndWeaponryType")
+    public List<WeaponryInMilitaryBase> findAllByCorpsAndWeaponryType(@RequestParam("id") int id,
+                                                                      @RequestParam("type") WeaponryType type){
+        return weaponryInMilitaryBaseService.findAllByCorpsAndWeaponryType(id, type);
     }
 
 }

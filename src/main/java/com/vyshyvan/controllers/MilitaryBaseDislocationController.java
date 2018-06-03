@@ -42,6 +42,7 @@ public class MilitaryBaseDislocationController {
                                    @RequestParam("baseId") int baseId,
                                    @RequestParam("dislocationId") int dislocationId){
 
+        System.out.println("in update");
         MilitaryBase militaryBase = new MilitaryBase();
         militaryBase.setId(baseId);
 
@@ -52,9 +53,6 @@ public class MilitaryBaseDislocationController {
         militaryBaseDislocation.setId(id);
 
         return service.update(militaryBaseDislocation);
-
-
-
     }
 
     @RequestMapping("/delete")

@@ -41,5 +41,15 @@ public class BuildingsController {
     public Buildings get(@RequestParam("id") int id){
         return buildingsService.getBuildings(id);
     }
+
+    @RequestMapping("/findAllByMoreThanOneUnit")
+    public List<Buildings> findAllByMoreThanOneUnit(){
+        return buildingsService.findAllByMoreThanOneUnit();
+    }
+
+    @RequestMapping("/findAllByNoUnits")
+    public List<Buildings> findAllByNoUnits(){
+        return buildingsService.findAllByNoUnits();
+    }
 }
 

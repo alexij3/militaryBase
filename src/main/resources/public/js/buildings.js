@@ -66,7 +66,23 @@ app.controller("BuildingsCtrl", function($scope, $http){
 
     this.getBuildings = function getBuildings(id){
         $http.get('/api/buildings/get?id=' + id);
-    }
+    };
+
+    /**
+     * QUERIES
+     */
+
+    this.findAllByMoreThanOneUnit = function findAllByMoreThanOneUnit(){
+        $http.get('/api/buildings/findAllByMoreThanOneUnit').then(function(response){
+            $scope.buildings = response.data;
+        });
+    };
+
+    this.findAllByNoUnits = function findAllByNoUnits(){
+        $http.get('/api/buildings/findAllByNoUnits').then(function(response){
+            $scope.buildings = response.data;
+        });
+    };
 });
 
 

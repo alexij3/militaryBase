@@ -1,9 +1,6 @@
 package com.vyshyvan.repositories.militarybase;
 
-import com.vyshyvan.model.Army;
-import com.vyshyvan.model.Corps;
-import com.vyshyvan.model.Division;
-import com.vyshyvan.model.MilitaryBase;
+import com.vyshyvan.model.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

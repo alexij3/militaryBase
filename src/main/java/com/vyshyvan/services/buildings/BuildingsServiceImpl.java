@@ -35,4 +35,14 @@ public class BuildingsServiceImpl implements BuildingsService {
     public List<Buildings> getAll() {
         return (List<Buildings>) buildingsDAO.findAll();
     }
+
+    @Override
+    public List<Buildings> findAllByMoreThanOneUnit() {
+        return buildingsDAO.findAllByMoreThanOneUnit();
+    }
+
+    @Override
+    public List<Buildings> findAllByNoUnits() {
+        return buildingsDAO.findAllByNoUnits();
+    }
 }

@@ -2,6 +2,7 @@ var app = angular.module("demo", []);
 
 app.controller("SoldierCtrl", function($scope, $http){
     var idToUpdate;
+    var specialties = [];
 
     var time = performance.now();
     $scope.soldier = [];
@@ -67,10 +68,11 @@ app.controller("SoldierCtrl", function($scope, $http){
         });
     };
 
-    this.startUpdateSoldier = function startUpdateSoldier(id, name, age, militaryBaseId){
+    this.startUpdateSoldier = function startUpdateSoldier(id, name, age, militaryBaseId, specialty){
         document.getElementById('updateMilitaryBase').value = militaryBaseId;
         document.getElementById('updateSoldierAge').value = age;
         document.getElementById('updateSoldierName').value = name;
+        specialties = specialty;
         idToUpdate = id;
     };
 
@@ -84,7 +86,8 @@ app.controller("SoldierCtrl", function($scope, $http){
             url : '/api/soldier/update?id=' + idToUpdate + '&mbaseId=' + militaryBaseId,
             data: {
                 name : name,
-                age : age
+                age : age,
+                specialty : specialties
             }
         };
 

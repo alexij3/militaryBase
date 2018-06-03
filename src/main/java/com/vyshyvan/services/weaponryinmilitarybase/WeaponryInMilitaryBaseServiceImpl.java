@@ -1,6 +1,7 @@
 package com.vyshyvan.services.weaponryinmilitarybase;
 
 import com.vyshyvan.model.WeaponryInMilitaryBase;
+import com.vyshyvan.model.WeaponryType;
 import com.vyshyvan.repositories.weaponryinmilitarybase.WeaponryInMilitaryBaseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,30 @@ public class WeaponryInMilitaryBaseServiceImpl implements WeaponryInMilitaryBase
     @Override
     public List<WeaponryInMilitaryBase> getAll() {
         return (List<WeaponryInMilitaryBase>) weaponryInMilitaryBaseDAO.findAll();
+    }
+
+    @Override
+    public List<WeaponryInMilitaryBase> findAllByWeaponryType(WeaponryType type) {
+        return weaponryInMilitaryBaseDAO.findAllByWeaponryType(type);
+    }
+
+    @Override
+    public List<WeaponryInMilitaryBase> findAllByBaseAndWeaponryType(int id, WeaponryType type) {
+        return weaponryInMilitaryBaseDAO.findAllByBaseAndWeaponryType(id, type);
+    }
+
+    @Override
+    public List<WeaponryInMilitaryBase> findAllByArmyAndWeaponryType(long id, WeaponryType type) {
+        return weaponryInMilitaryBaseDAO.findAllByArmyAndWeaponryType(id, type);
+    }
+
+    @Override
+    public List<WeaponryInMilitaryBase> findAllByDivisionAndWeaponryType(int id, WeaponryType type) {
+        return weaponryInMilitaryBaseDAO.findAllByDivisionAndWeaponryType(id, type);
+    }
+
+    @Override
+    public List<WeaponryInMilitaryBase> findAllByCorpsAndWeaponryType(int id, WeaponryType type) {
+        return weaponryInMilitaryBaseDAO.findAllByCorpsAndWeaponryType(id, type);
     }
 }

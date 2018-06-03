@@ -13,7 +13,8 @@ app.controller("WeaponryInMbaseCtrl", function($scope, $http){
         $http.get('/api/militarybase/showall').then(function(response){
             bases = response.data;
             var select = document.getElementById('militaryBase');
-            var selectMbaseUpd = document.getElementById('updMilitaryBase');
+            var selectMbaseUpd = docu   ment.getElementById('updMilitaryBase');
+            var queryBase = document.getElementById('selectBase');
 
             for (var i = 0; i < bases.length; i++) {
                 var option = document.createElement("option");
@@ -33,6 +34,16 @@ app.controller("WeaponryInMbaseCtrl", function($scope, $http){
                 selectMbaseUpd.add(option2);
 
                 console.log(selectMbaseUpd);
+            }
+
+            for (var k = 0; k < bases.length; k++){
+                var option3 = document.createElement("option");
+                option3.text = bases[k].name;
+                option3.value = bases[k].id;
+
+                queryBase.add(option3);
+
+                console.log(queryBase);
             }
 
         });
@@ -63,6 +74,55 @@ app.controller("WeaponryInMbaseCtrl", function($scope, $http){
                 console.log(selectweaponryUpd);
             }
         });
+
+    });
+
+    $http.get('/api/army/showall').then(function(response) {
+        console.log(response);
+        var armies = response.data;
+        var selectArmyQuery = document.getElementById('selectArmy');
+
+        for (var k = 0; k < armies.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = armies[k].name;
+            option3.value = armies[k].id;
+
+            selectArmyQuery.add(option3);
+            console.log(selectArmyQuery);
+        }
+
+    });
+
+    $http.get('/api/division/showall').then(function(response) {
+        console.log(response);
+        var divisions = response.data;
+        var selectDivisionQuery = document.getElementById('selectDivision');
+
+        for (var k = 0; k < divisions.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = divisions[k].name;
+            option3.value = divisions[k].id;
+
+            selectDivisionQuery.add(option3);
+            console.log(selectDivisionQuery);
+        }
+
+
+    });
+
+    $http.get('/api/corps/showall').then(function(response) {
+        console.log(response);
+        var corps = response.data;
+        var selectCorpsQuery = document.getElementById('selectCorps');
+
+        for (var k = 0; k < corps.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = corps[k].name;
+            option3.value = corps[k].id;
+
+            selectCorpsQuery.add(option3);
+            console.log(selectCorpsQuery);
+        }
 
     });
 
@@ -121,6 +181,54 @@ app.controller("WeaponryInMbaseCtrl", function($scope, $http){
             window.location.reload();
         });
     }
+
+    /**
+     * QUERIES
+     */
+
+    this.selectByType = function selectByType(){
+        var type = $('#selectType').val();
+
+        $http.get('/api/weaponryinmbase/findAllByWeaponryType?type=' + type).then(function(response){
+            $scope.weaponry = response.data;
+        });
+    };
+
+    this.selectByBaseAndType = function selectByBaseAndType(){
+        var id = $('#selectBase').val();
+        var type = $('#selectTypeBaseAndType').val();
+
+        $http.get('/api/weaponryinmbase/findAllByBaseAndWeaponryType?id=' + id + '&type=' + type).then(function(response){
+            $scope.weaponry = response.data;
+        });
+    };
+
+    this.selectByArmyAndType = function selectByArmyAndType(){
+        var id = $('#selectArmy').val();
+        var type = $('#selectTypeArmyAndType').val();
+
+        $http.get('/api/weaponryinmbase/findAllByArmyAndWeaponryType?id=' + id + '&type=' + type).then(function(response){
+            $scope.weaponry = response.data;
+        });
+    };
+
+    this.selectByDivisionAndType = function selectByDivisionAndType(){
+        var id = $('#selectDivision').val();
+        var type = $('#selectTypeDivisionAndType').val();
+
+        $http.get('/api/weaponryinmbase/findAllByDivisionAndWeaponryType?id=' + id + '&type=' + type).then(function(response){
+            $scope.weaponry = response.data;
+        });
+    };
+
+    this.selectByCorpsAndType = function selectByCorpsAndType(){
+        var id = $('#selectCorps').val();
+        var type = $('#selectTypeCorpsAndType').val();
+
+        $http.get('/api/weaponryinmbase/findAllByCorpsAndWeaponryType?id=' + id + '&type=' + type).then(function(response){
+            $scope.weaponry = response.data;
+        });
+    };
 });
 
 

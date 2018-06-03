@@ -2,41 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Солдати</title>
+    <title>Спеціальності солдатів</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body ng-app = "demo">
-Солдати
 <div class="container" style="margin-top: 30px" ng-controller = "SoldierSpecialtiesCtrl as soldierSpecialtiesCtrl">
-    <div class="datagrid">
-        <table>
-            <thead>
-            <tr>
-                <th>&#128273ІД</th>
-                <th>Ім'я</th>
-                <th>Вік</th>
-                <th>Спеціальності</th>
-                <th width="200"></th>
-            </tr>
-            </thead>
+    <div id="dropdownWrapper">
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-left: 0">Запити</button>
+            <div style="min-width: 700px;" class="dropdown-content">
+                <a href="" data-toggle="modal" data-target="#selectBySpecialtyAndArmy">Список солдатів вказаної спеціальності у вказаній армії</a>
+                <a href="" data-toggle="modal" data-target="#selectBySpecialtyAndBase">Список солдатів вказаної спеціальності у вказаній військовій частині</a>
+                <a href="" data-toggle="modal" data-target="#selectBySpecialtyAndDivision">Список солдатів вказаної спеціальності у вказаній дивізії</a>
+                <a href="" data-toggle="modal" data-target="#selectBySpecialtyAndCorps">Список солдатів вказаної спеціальності у вказаному корпусі</a>
+                <a href="" data-toggle="modal" data-target="#selectBySpecialtyAndBrigade">Список солдатів вказаної спеціальності у вказаній бригаді</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Спеціальності солдатів</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>&#128273ІД</th>
+                            <th>Ім'я</th>
+                            <th>Вік</th>
+                            <th>Спеціальності</th>
+                            <th width="200"></th>
+                        </tr>
+                        </thead>
 
-            <tbody>
+                        <tbody>
 
-            <tr ng-repeat = "item in soldiers">
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.age}}</td>
-                <td>{{item.specialty.toString()}}</td>
-                <td>
-                    <button id="create" type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center"
-                            ng-click="soldierSpecialtiesCtrl.startAddSpecialties(item.id, item.name, item.age, item.militaryBaseId)">Створити</button>
-                    <button data-toggle="modal" data-target="#deleteModal" id="delete" ng-click="soldierSpecialtiesCtrl.startDeleteSpecialties(item.id, item.age, item.name, item.specialty, item.militaryBaseId)" class="btn-danger">Видалити</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        <tr ng-repeat = "item in soldiers">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.age}}</td>
+                            <td>{{item.specialty.toString()}}</td>
+                            <td>
+                                <button id="create" type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center"
+                                        ng-click="soldierSpecialtiesCtrl.startAddSpecialties(item.id, item.name, item.age, item.militaryBaseId)">Створити</button>
+                                <button data-toggle="modal" data-target="#deleteModal" id="delete" ng-click="soldierSpecialtiesCtrl.startDeleteSpecialties(item.id, item.age, item.name, item.specialty, item.militaryBaseId)" class="btn-danger">Видалити</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Додавання армії -->
@@ -95,6 +113,171 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div id="selectBySpecialtyAndArmy" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір сеціальності і армії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectArmy" title="Армія">
+
+                    </select>
+                    <select id="selectSpecialty" title="Спеціальність">
+                        <option>Стрілець</option>
+                        <option>Снайпер</option>
+                        <option>Розвідник</option>
+                        <option>Медик</option>
+                        <option>Кухар</option>
+                        <option>Вартовий</option>
+                        <option>Льотчик</option>
+                        <option>Підривник</option>
+                        <option>Радіотехнік</option>
+                        <option>Артилерист</option>
+                        <option>Рятувальник</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectBySpecialtyAndArmyBtn" ng-click="soldierSpecialtiesCtrl.selectBySpecialtyAndArmy()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectBySpecialtyAndBase" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір спеціальності і частини</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectBase" title="Військова частина">
+
+                    </select>
+                    <select id="selectSpecialtyBase" title="Спеціальність">
+                        <option>Стрілець</option>
+                        <option>Снайпер</option>
+                        <option>Розвідник</option>
+                        <option>Медик</option>
+                        <option>Кухар</option>
+                        <option>Вартовий</option>
+                        <option>Льотчик</option>
+                        <option>Підривник</option>
+                        <option>Радіотехнік</option>
+                        <option>Артилерист</option>
+                        <option>Рятувальник</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectBySpecialtyAndBaseBtn" ng-click="soldierSpecialtiesCtrl.selectBySpecialtyAndBase()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectBySpecialtyAndDivision" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір спеціальності і частини</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectDivision" title="Дивізія">
+
+                    </select>
+                    <select id="selectSpecialtyDivision" title="Спеціальність">
+                        <option>Стрілець</option>
+                        <option>Снайпер</option>
+                        <option>Розвідник</option>
+                        <option>Медик</option>
+                        <option>Кухар</option>
+                        <option>Вартовий</option>
+                        <option>Льотчик</option>
+                        <option>Підривник</option>
+                        <option>Радіотехнік</option>
+                        <option>Артилерист</option>
+                        <option>Рятувальник</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectBySpecialtyAndDivisionBtn" ng-click="soldierSpecialtiesCtrl.selectBySpecialtyAndDivision()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectBySpecialtyAndCorps" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір спеціальності і частини</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectCorps" title="Дивізія">
+
+                    </select>
+                    <select id="selectSpecialtyCorps" title="Спеціальність">
+                        <option>Стрілець</option>
+                        <option>Снайпер</option>
+                        <option>Розвідник</option>
+                        <option>Медик</option>
+                        <option>Кухар</option>
+                        <option>Вартовий</option>
+                        <option>Льотчик</option>
+                        <option>Підривник</option>
+                        <option>Радіотехнік</option>
+                        <option>Артилерист</option>
+                        <option>Рятувальник</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectBySpecialtyAndCorpsBtn" ng-click="soldierSpecialtiesCtrl.selectBySpecialtyAndCorps()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectBySpecialtyAndBrigade" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір спеціальності і частини</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectBrigade" title="Дивізія">
+
+                    </select>
+                    <select id="selectSpecialtyBrigade" title="Спеціальність">
+                        <option>Стрілець</option>
+                        <option>Снайпер</option>
+                        <option>Розвідник</option>
+                        <option>Медик</option>
+                        <option>Кухар</option>
+                        <option>Вартовий</option>
+                        <option>Льотчик</option>
+                        <option>Підривник</option>
+                        <option>Радіотехнік</option>
+                        <option>Артилерист</option>
+                        <option>Рятувальник</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectBySpecialtyAndBrigadeBtn" ng-click="soldierSpecialtiesCtrl.selectBySpecialtyAndBrigade()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
         </div>
     </div>
 

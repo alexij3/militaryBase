@@ -1,6 +1,7 @@
 package com.vyshyvan.controllers;
 
 import com.vyshyvan.model.*;
+import com.vyshyvan.repositories.militarybase.MilitaryBaseDAO;
 import com.vyshyvan.services.army.ArmyServiceImpl;
 import com.vyshyvan.services.division.DivisionService;
 import com.vyshyvan.services.militarybase.MilitaryBaseServiceImpl;
@@ -20,6 +21,7 @@ public class MilitaryBaseController {
 
     @Autowired
     ArmyServiceImpl armyService;
+
     @RequestMapping("/showall")
     public List<MilitaryBase> showMilitaryBases(){
         return militaryBaseService.getAll();
@@ -132,6 +134,5 @@ public class MilitaryBaseController {
     public List<MilitaryBase> findAllByCorpsId(@RequestParam("id") int id){
         return militaryBaseService.findAllByCorpsId(id);
     }
-
 
 }

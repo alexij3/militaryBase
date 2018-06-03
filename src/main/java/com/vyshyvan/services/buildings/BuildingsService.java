@@ -10,4 +10,6 @@ public interface BuildingsService {
     Buildings updateBuildings(Buildings buildings);
     void deleteBuildings(int id);
     List<Buildings> getAll();
+    List<Buildings> findAllByMoreThanOneUnit();
+    List<Buildings> findAllByNoUnits();
 }

@@ -2,36 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Будівлі</title>
+    <title>Споруди</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body ng-app = "demo">
-Будівлі
-<div class="container-fluid"  ng-controller = "BuildingsCtrl as buildingsCtrl">
-    <div class="datagrid">
-        <table>
-            <thead>
-            <tr>
-                <th>&#128273ІД</th>
-                <th>Назва</th>
-                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
-            </tr>
-            </thead>
+<div class="container"  ng-controller = "BuildingsCtrl as buildingsCtrl">
+    <div id="dropdownWrapper">
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-left: 0">Запити</button>
+            <div style="min-width: 700px;" class="dropdown-content">
+                <a href="" ng-click="buildingsCtrl.findAllByMoreThanOneUnit()">Перелік споруд, де дислокується більше одного підрозділу</a>
+                <a href="" ng-click="buildingsCtrl.findAllByNoUnits()" >Перелік споруд, де не дислокується жодного підрозділу</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Споруди</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>&#128273ІД</th>
+                            <th>Назва</th>
+                            <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+                        </tr>
+                        </thead>
 
-            <tbody>
+                        <tbody>
 
-            <tr ng-repeat = "item in buildings">
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>
-                    <button id="update" ng-click="buildingsCtrl.startUpdateBuildings(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="buildingsCtrl.deleteBuildings(item.id)" class="btn-danger">Видалити</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        <tr ng-repeat = "item in buildings">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>
+                                <button id="update" ng-click="buildingsCtrl.startUpdateBuildings(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                                <button id="delete" ng-click="buildingsCtrl.deleteBuildings(item.id)" class="btn-danger">Видалити</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Додавання армії -->

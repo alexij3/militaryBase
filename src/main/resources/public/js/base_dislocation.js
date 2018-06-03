@@ -184,7 +184,7 @@ app.controller("DislocationCtrl", function($scope, $http){
 
             var request = {
                 method: 'POST',
-                url: '/api/dislocation/insert?id=' + idToUpdate + '&baseId=' + baseId + '&dislocation=' + dislocationId
+                url: '/api/dislocation/update?id=' + idToUpdate + '&baseId=' + baseId + '&dislocationId=' + dislocationId
             };
 
             var time = performance.now();

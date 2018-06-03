@@ -1,8 +1,6 @@
 package com.vyshyvan.services.militarybase;
 
-import com.vyshyvan.model.Corps;
-import com.vyshyvan.model.Division;
-import com.vyshyvan.model.MilitaryBase;
+import com.vyshyvan.model.*;
 import com.vyshyvan.repositories.militarybase.MilitaryBaseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
