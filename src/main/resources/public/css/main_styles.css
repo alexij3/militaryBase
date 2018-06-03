@@ -12,11 +12,6 @@ body{
     width: 70%
 }
 
-@font-face{
-    font-family: 'myFont';
-    src: url('Montserrat-Regular.ttf');
-}
-
 .tables{
     display: flex;
     justify-content: center;

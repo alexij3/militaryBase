@@ -14,4 +14,7 @@ public interface TransportInMilitaryBaseService {
 
     List<TransportInMilitaryBase> findAllByTransportType(TransportType type);
     List<TransportInMilitaryBase> findAllByBaseAndTransportType(int id, TransportType type);
+    List<TransportInMilitaryBase> findAllByArmyAndTransportType(long id, TransportType type);
+    List<TransportInMilitaryBase> findAllByDivisionAndTransportType(int id, TransportType type);
+    List<TransportInMilitaryBase> findAllByCorpsAndTransportType(int id, TransportType type);
 }

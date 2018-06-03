@@ -47,4 +47,19 @@ public class TransportInMilitaryBaseServiceImpl implements TransportInMilitaryBa
     public List<TransportInMilitaryBase> findAllByBaseAndTransportType(int id, TransportType type) {
         return transportInMilitaryBaseDAO.findAllByBaseAndTransportType(id, type);
     }
+
+    @Override
+    public List<TransportInMilitaryBase> findAllByArmyAndTransportType(long id, TransportType type) {
+        return transportInMilitaryBaseDAO.findAllByArmyAndTransportType(id, type);
+    }
+
+    @Override
+    public List<TransportInMilitaryBase> findAllByDivisionAndTransportType(int id, TransportType type) {
+        return transportInMilitaryBaseDAO.findAllByDivisionAndTransportType(id, type);
+    }
+
+    @Override
+    public List<TransportInMilitaryBase> findAllByCorpsAndTransportType(int id, TransportType type) {
+        return transportInMilitaryBaseDAO.findAllByCorpsAndTransportType(id, type);
+    }
 }

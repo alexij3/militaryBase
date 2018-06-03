@@ -66,8 +66,24 @@ public class TransportInMilitaryBaseController {
     @RequestMapping("/findAllByBaseAndTransportType")
     public List<TransportInMilitaryBase> findAllByBaseAndTransportType(@RequestParam("id") int id,
                                                                        @RequestParam("type") TransportType type){
-        System.out.println(type);
-        System.out.println(id);
         return transportInMilitaryBaseService.findAllByBaseAndTransportType(id, type);
+    }
+
+    @RequestMapping("/findAllByArmyAndTransportType")
+    public List<TransportInMilitaryBase> findAllByArmyAndTransportType(@RequestParam("id") long id,
+                                                                       @RequestParam("type") TransportType type){
+        return transportInMilitaryBaseService.findAllByArmyAndTransportType(id, type);
+    }
+
+    @RequestMapping("/findAllByDivisionAndTransportType")
+    public List<TransportInMilitaryBase> findAllByDivisionAndTransportType(@RequestParam("id") int id,
+                                                                       @RequestParam("type") TransportType type){
+        return transportInMilitaryBaseService.findAllByDivisionAndTransportType(id, type);
+    }
+
+    @RequestMapping("/findAllByCorpsAndTransportType")
+    public List<TransportInMilitaryBase> findAllByCorpsAndTransportType(@RequestParam("id") int id,
+                                                                       @RequestParam("type") TransportType type){
+        return transportInMilitaryBaseService.findAllByCorpsAndTransportType(id, type);
     }
 }

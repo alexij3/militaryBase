@@ -77,6 +77,55 @@ app.controller("TransportInMbaseCtrl", function($scope, $http){
 
     });
 
+    $http.get('/api/army/showall').then(function(response) {
+        console.log(response);
+        var armies = response.data;
+        var selectArmyQuery = document.getElementById('selectArmy');
+
+        for (var k = 0; k < armies.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = armies[k].name;
+            option3.value = armies[k].id;
+
+            selectArmyQuery.add(option3);
+            console.log(selectArmyQuery);
+        }
+
+    });
+
+    $http.get('/api/division/showall').then(function(response) {
+        console.log(response);
+        var divisions = response.data;
+        var selectDivisionQuery = document.getElementById('selectDivision');
+
+        for (var k = 0; k < divisions.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = divisions[k].name;
+            option3.value = divisions[k].id;
+
+            selectDivisionQuery.add(option3);
+            console.log(selectDivisionQuery);
+        }
+
+
+    });
+
+    $http.get('/api/corps/showall').then(function(response) {
+        console.log(response);
+        var corps = response.data;
+        var selectCorpsQuery = document.getElementById('selectCorps');
+
+        for (var k = 0; k < corps.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = corps[k].name;
+            option3.value = corps[k].id;
+
+            selectCorpsQuery.add(option3);
+            console.log(selectCorpsQuery);
+        }
+
+    });
+
 
     this.createTransportInMbase = function createTransportInMbase(){
         var militaryBaseId = document.getElementById('militaryBase').value;
@@ -148,9 +197,35 @@ app.controller("TransportInMbaseCtrl", function($scope, $http){
     this.selectByBaseAndType = function selectByBaseAndType(){
         var id = $('#selectBase').val();
         var type = $('#selectTypeBaseAndType').val();
-        window.alert(type);
 
         $http.get('/api/transportinmbase/findAllByBaseAndTransportType?id=' + id + '&type=' + type).then(function(response){
+            $scope.transport = response.data;
+        });
+    };
+
+    this.selectByArmyAndType = function selectByArmyAndType(){
+        var id = $('#selectArmy').val();
+        var type = $('#selectTypeArmyAndType').val();
+
+        $http.get('/api/transportinmbase/findAllByArmyAndTransportType?id=' + id + '&type=' + type).then(function(response){
+            $scope.transport = response.data;
+        });
+    };
+
+    this.selectByDivisionAndType = function selectByDivisionAndType(){
+        var id = $('#selectDivision').val();
+        var type = $('#selectTypeDivisionAndType').val();
+
+        $http.get('/api/transportinmbase/findAllByDivisionAndTransportType?id=' + id + '&type=' + type).then(function(response){
+            $scope.transport = response.data;
+        });
+    };
+
+    this.selectByCorpsAndType = function selectByCorpsAndType(){
+        var id = $('#selectCorps').val();
+        var type = $('#selectTypeCorpsAndType').val();
+
+        $http.get('/api/transportinmbase/findAllByCorpsAndTransportType?id=' + id + '&type=' + type).then(function(response){
             $scope.transport = response.data;
         });
     };

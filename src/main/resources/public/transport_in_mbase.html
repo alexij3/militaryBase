@@ -16,6 +16,9 @@
             <div style="min-width: 700px;" class="dropdown-content">
                 <a href="" data-toggle="modal" data-target="#selectByType">Перелік техніки вказаного типу загалом</a>
                 <a href="" data-toggle="modal" data-target="#selectByBaseAndType">Перелік техніки вказаного типу у вказаній частині</a>
+                <a href="" data-toggle="modal" data-target="#selectByArmyAndType">Перелік техніки вказаного типу у вказаній армії</a>
+                <a href="" data-toggle="modal" data-target="#selectByDivisionAndType">Перелік техніки вказаного типу у вказаній дивізії</a>
+                <a href="" data-toggle="modal" data-target="#selectByCorpsAndType">Перелік техніки вказаного типу у вказаному корпусі</a>
             </div>
         </div>
     </div>
@@ -130,7 +133,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Вибір типу</h4>
+                    <h4 class="modal-title">Вибір типу і частини</h4>
                 </div>
                 <div class="modal-body">
                     <select id="selectBase" title="Військова частина">
@@ -144,6 +147,81 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="selectTypeBaseAndTypeBtn" ng-click="transportInMbaseCtrl.selectByBaseAndType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByArmyAndType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу і армії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectArmy" title="Армія">
+
+                    </select>
+                    <select id="selectTypeArmyAndType" title="Тип техніки">
+                        <option>БМП</option>
+                        <option>Тягач</option>
+                        <option>Автотранспорт</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByArmyAndTypeBtn" ng-click="transportInMbaseCtrl.selectByArmyAndType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByDivisionAndType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу і дивізії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectDivision" title="Дивізія">
+
+                    </select>
+                    <select id="selectTypeDivisionAndType" title="Тип техніки">
+                        <option>БМП</option>
+                        <option>Тягач</option>
+                        <option>Автотранспорт</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByDivisionAndTypeBtn" ng-click="transportInMbaseCtrl.selectByDivisionAndType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByCorpsAndType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу і корпусу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectCorps" title="Корпус">
+
+                    </select>
+                    <select id="selectTypeCorpsAndType" title="Тип техніки">
+                        <option>БМП</option>
+                        <option>Тягач</option>
+                        <option>Автотранспорт</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByCorpsAndTypeBtn" ng-click="transportInMbaseCtrl.selectByCorpsAndType()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
